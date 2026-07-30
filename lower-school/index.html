@@ -421,7 +421,10 @@
     <h2>Private lessons</h2>
     <p class="lead">Mr. Dillon-Seminario is not teaching private lessons this year. Families arrange lessons independently with a private teacher. Use the list below to find one for your student's instrument.</p>
     <div class="box" style="margin-bottom:16px;"><h3>Percussion students</h3><p>Our middle school percussion assistant is offering private lessons to <b>percussion students only</b>. If your student plays percussion and you'd like lessons, email me and I'll connect you.</p></div>
-    <div class="box"><h3>Private Teacher List</h3><p>Local private instructors by instrument, with phone and email. <a href="https://docs.google.com/spreadsheets/d/1nerxU-ziV4plVYY08HL2DHxt6MGUxx6Nt5vG8iebGv0/edit?gid=0#gid=0" style="color:var(--gold-deep);font-weight:600;">Open the Private Teacher List →</a></p></div>
+    <div class="grid2">
+      <div class="box"><h3>Private Teacher List</h3><p>Local private instructors by instrument, with phone and email. <a href="https://docs.google.com/spreadsheets/d/1nerxU-ziV4plVYY08HL2DHxt6MGUxx6Nt5vG8iebGv0/edit?gid=0#gid=0" style="color:var(--gold-deep);font-weight:600;">Open the Private Teacher List →</a></p></div>
+      <div class="box"><h3>What it runs</h3><p>Usually $50 to $80 an hour, depending on the teacher. At this age lessons are typically <b>30 minutes</b>, so figure roughly $25 to $40 per lesson.</p></div>
+    </div>
   </section>
 
   <section>
@@ -452,7 +455,7 @@
   <section id="investment">
     <p class="eyebrow">What It Costs</p>
     <h2>Your monthly investment</h2>
-    <p class="lead">Pick your student's instrument for a real number. Lessons are the largest piece and you arrange them yourself, so the rate is yours. The slider starts at the low end of what local teachers charge.</p>
+    <p class="lead">Pick your student's instrument for a real number. Lessons are the largest piece and you arrange them yourself, so the rate is yours. Local teachers generally run $50 to $80 an hour depending on the teacher, and at this age lessons are usually <b>30 minutes</b>, so the math below charges half the hourly rate per lesson.</p>
 
     <div class="calc">
       <fieldset>
@@ -462,10 +465,10 @@
 
       <div class="ctl-row">
         <fieldset>
-          <legend class="ctl-label">Lesson rate <span class="ctl-val" id="rateOut">$25/hr</span></legend>
-          <input type="range" id="rate" min="25" max="40" step="5" value="25"
+          <legend class="ctl-label">Lesson rate <span class="ctl-val" id="rateOut">$50/hr</span></legend>
+          <input type="range" id="rate" min="50" max="80" step="5" value="50"
                  aria-label="Lesson rate per hour" />
-          <div class="scale"><span>$25</span><span>$40</span></div>
+          <div class="scale"><span>$50</span><span>$80</span></div>
         </fieldset>
         <fieldset>
           <legend class="ctl-label">Lessons</legend>
@@ -552,6 +555,9 @@
        entry-level Amazon listings checked 2026-07-28. */
     var BOOK = 15;
     var MONTHS = 9;
+    /* Lower school lessons run 30 minutes at this age, so a lesson costs half
+       the hourly rate. Middle and high school run 45-60 min at the same rate. */
+    var LESSON_HOURS = 0.5;
 
     var INSTRUMENTS = [
       { id: 'flute',    label: 'Flute',       rent: 30 },
@@ -629,7 +635,7 @@
       var equip = setup ? setup.cost : (inst.buy || 0);
       var equipLine = setup ? setup.line : inst.buyLabel;
 
-      var lessons = state.rate * freq.per;
+      var lessons = state.rate * LESSON_HOURS * freq.per;
       var rental = inst.rent;
       var monthly = lessons + rental;
       var oneTime = BOOK + equip;
@@ -649,7 +655,7 @@
       if (freq.per > 0) {
         rows.push({
           k: 'Private lessons',
-          sub: freq.label.toLowerCase() + ' at $' + state.rate + '/hr — ' + freq.per + ' a month',
+          sub: freq.label.toLowerCase() + ', 30 min at $' + state.rate + '/hr, ' + freq.per + ' a month',
           v: money(lessons) + '/mo'
         });
       } else {
