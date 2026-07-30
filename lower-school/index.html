@@ -450,8 +450,8 @@
     <ol class="steps">
       <li><div><p class="t">Thursday, August 6</p><p class="d">Combined music class in the theater. Band and chorus together.</p></div></li>
       <li><div><p class="t">Tuesday, August 11</p><p class="d">Combined again, in the theater.</p></div></li>
-      <li><div><p class="t">Thursday, August 13</p><p class="d">Combined one last time, so every student has seen both before choosing.</p></div></li>
-      <li><div><p class="t">Tuesday, August 18</p><p class="d">Band and chorus meet separately for the first time. <b>Instruments are assigned.</b> If your student already owns an instrument, bring it this day.</p></div></li>
+      <li><div><p class="t">Thursday, August 13</p><p class="d">Combined one last time, so every student has seen both before choosing. <b>Instruments are assigned this day.</b></p></div></li>
+      <li><div><p class="t">Tuesday, August 18</p><p class="d">Band and chorus meet separately for the first time. Students come <b>with their instrument and their book</b>.</p></div></li>
     </ol>
     <div class="callout" style="background:#fff4e0;border:1px solid #ecd8a6;border-radius:8px;padding:13px 16px;font-size:13.5px;color:#7a5c0f;margin-top:16px;"><b>Band is a full-year commitment.</b> A section losing a player affects everyone in it, so students don't drop partway through except for a medical reason or special permission from administration. If band starts to feel impossible, email me before it gets to that point.</div>
   </section>
@@ -471,6 +471,11 @@
       <div class="inst"><svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse class="ink" cx="60" cy="62" rx="40" ry="13"/> <path class="ink" d="M20 62v22q0 13 40 13t40-13V62"/> <path class="acc" d="M32 74v14M60 78v16M88 74v14"/> <path class="ink" d="M26 44 66 18M52 46 96 22"/></svg><p class="n">Percussion</p></div>
     </div>
     <p class="lead" style="margin-top:16px;font-size:13px;">Section seats are limited, so not everyone gets a first choice. Every instrument here has a real part to play.</p>
+
+    <p class="eyebrow" style="margin-top:30px;">The Book</p>
+    <h2>Provided, and yours to buy if you'd rather</h2>
+    <p class="lead">4th and 5th grade use <b>Essential Elements for Band, Book 1</b>. <b>A book is provided for every student</b>, so there is nothing you have to purchase.</p>
+    <div class="box"><h3>Buying your own is optional</h3><p>Some families prefer their student have a copy that stays home and can be written in. If that's you, it's about $15 from Amazon or any music retailer. Get the edition for your student's <b>specific instrument</b> — a trumpet book won't work for a clarinet.</p></div>
   </section>
 
   <section>
@@ -625,7 +630,9 @@
        Bass guitar and bells are NOT rentable through them, so those families
        buy once instead — hence `buy` rather than `rent`. Equipment prices are
        entry-level Amazon listings checked 2026-07-28. */
-    var BOOK = 15;
+    /* The school provides the book, so it is NOT a cost in this calculator.
+       Families may buy their own copy (~$15) but that is optional and stays
+       out of the totals — see the Book section above. */
     var MONTHS = 9;
     /* Lower school lessons run 30 minutes at this age, so a lesson costs half
        the hourly rate. Middle and high school run 45-60 min at the same rate. */
@@ -710,7 +717,7 @@
       var lessons = state.rate * LESSON_HOURS * freq.per;
       var rental = inst.rent;
       var monthly = lessons + rental;
-      var oneTime = BOOK + equip;
+      var oneTime = equip;
       var year = monthly * MONTHS + oneTime;
 
       /* Reflect selection state on every pill group. */
@@ -747,7 +754,7 @@
         });
       }
 
-      rows.push({ k: 'Essential Elements Book 1', sub: 'one time', v: money(BOOK), muted: true });
+      rows.push({ k: 'Essential Elements Book 1', sub: 'provided by the school', v: '$0', muted: true });
 
       $('lines').innerHTML = rows.map(function (r) {
         return '<div class="line' + (r.muted ? ' muted' : '') + '">' +
@@ -761,10 +768,17 @@
         : (freq.per > 0 ? 'Lessons only — nothing to rent' : 'No recurring cost');
       $('yr').textContent = money(year);
 
-      $('onetime').innerHTML = '<b>' + money(oneTime) + ' due up front</b> — ' +
-        (equip > 0
-          ? 'the ' + equipLine.toLowerCase() + ' (' + money(equip) + ') and the book (' + money(BOOK) + ').'
-          : 'the book. Rental starts the month your student begins.');
+      /* Set display directly rather than the [hidden] attribute: the
+         `#investment .onetime` rule below it in the stylesheet has equal
+         specificity and would win, leaving an empty box on the page. */
+      if (oneTime > 0) {
+        $('onetime').style.display = '';
+        $('onetime').innerHTML = '<b>' + money(oneTime) + ' due up front</b>: ' +
+          equipLine.toLowerCase() + '. The book is provided by the school.';
+      } else {
+        $('onetime').style.display = 'none';
+        $('onetime').innerHTML = '';
+      }
 
       var pct = monthly > 0 ? Math.round((lessons / monthly) * 100) : 0;
       if (setup) {
