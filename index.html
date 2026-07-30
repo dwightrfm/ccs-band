@@ -35,6 +35,49 @@
     .nav .inner{padding:0 12px;}
     .nav a.tab{padding:12px 10px;font-size:11.5px;letter-spacing:.03em;}
   }
+
+  /* ---- Instrument line art -------------------------------------------
+     Colors live here, not in the SVG, so the art follows the palette. */
+  .art{display:block;width:100%;height:auto;overflow:visible;}
+  .art .ink{fill:none;stroke:var(--navy);stroke-width:3;
+            stroke-linecap:round;stroke-linejoin:round;}
+  .art .inkf{fill:var(--navy);stroke:none;}
+  .art .acc{fill:none;stroke:var(--gold);stroke-width:2.6;
+            stroke-linecap:round;stroke-linejoin:round;}
+  .art .accf{fill:var(--gold);stroke:none;}
+
+  /* A picture-first grid. The caption is a label for the drawing, not a
+     paragraph — if it needs a sentence it belongs in a .box instead. */
+  .instgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px;}
+  .inst{
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    border-radius:10px;
+    padding:16px 10px 13px;
+    text-align:center;
+  }
+  .inst .art{max-width:82px;margin:0 auto 9px;}
+  .inst .n{font-size:13.5px;font-weight:700;color:var(--navy);margin:0;line-height:1.3;}
+  .inst .s{font-size:11.5px;color:var(--muted);margin:3px 0 0;line-height:1.35;}
+  /* A short row of three, for the upper-school-only instruments. Needs its own
+     class rather than an inline grid-template — an inline style outranks the
+     media query below and would stay three-across on a phone. */
+  .instgrid.three{grid-template-columns:repeat(3,1fr);max-width:430px;}
+  @media (max-width:620px){
+    .instgrid,
+    .instgrid.three{grid-template-columns:repeat(2,1fr);max-width:none;}
+  }
+
+  /* A single hero-sized drawing, for the ukulele page. */
+  .artbig{max-width:250px;margin:6px auto 0;}
+
+  /* Hero art sits on navy, so it needs the light-on-dark treatment. Keep it
+     small — it is a mark above the headline, not a picture competing with it. */
+  .hero .art{max-width:74px;margin:0 auto 16px;}
+  .hero .art .ink{stroke:#d9bf7e;stroke-width:2.6;}
+  .hero .art .inkf{fill:#d9bf7e;}
+  .hero .art .acc{stroke:#8fa0c8;stroke-width:2.4;}
+  .hero .art .accf{fill:#8fa0c8;}
 </style>
 </head>
 <body>
@@ -392,6 +435,9 @@
   }
   .pick .t{font-size:18px;font-weight:800;color:var(--navy);margin:0 0 7px;letter-spacing:-.2px;}
   .pick .d{font-size:14px;color:var(--muted);margin:0;}
+  /* The card art is a signpost, not an illustration — it sits above the label
+     so a parent can spot their grade before reading anything. */
+  .pick .art{max-width:56px;margin:0 0 12px;}
   .pick .when{
     font-size:12.5px;color:var(--navy);font-weight:700;margin:10px 0 0;
     padding-top:9px;border-top:1px solid var(--panel-line);
@@ -409,8 +455,9 @@
     </svg>
     <p class="k1">Cary Christian School</p>
   </div>
+  <svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse class="inkf" cx="34" cy="84" rx="15" ry="11" transform="rotate(-20 34 84)"/> <path class="ink" d="M48 82V26" stroke-width="5"/> <ellipse class="inkf" cx="80" cy="72" rx="15" ry="11" transform="rotate(-20 80 72)"/> <path class="ink" d="M94 70V14" stroke-width="5"/> <path class="ink" d="M48 27 94 15" stroke-width="11" stroke-linecap="butt"/></svg>
   <h1>Band &amp; Ukulele 2026-2027</h1>
-  <p>Everything families need, in one place. Start with your student's grade, because the expectations are genuinely different.</p>
+  <p>Start with your student's grade. The expectations are genuinely different.</p>
 </div>
 
 <div class="wrap">
@@ -421,27 +468,31 @@
     <p class="lead">Start dates, costs, and expectations differ by level. Pick the page that matches your student and you'll have everything for the year.</p>
     <div class="pick">
       <a href="lower-school/">
+        <svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle class="ink" cx="11" cy="58" r="5"/> <path class="ink" d="M16 58h70"/> <rect class="ink" x="45" y="44" width="9" height="28" rx="3"/> <rect class="ink" x="58" y="44" width="9" height="28" rx="3"/> <rect class="ink" x="71" y="44" width="9" height="28" rx="3"/> <path class="acc" d="M49.5 44v-8M62.5 44v-8M75.5 44v-8"/> <path class="ink" d="M86 44 108 26v64L86 72z"/> <ellipse class="ink" cx="108" cy="58" rx="3.5" ry="32"/> <path class="acc" d="M30 58q-9 15 4 20h14"/></svg>
         <p class="g">4th &amp; 5th Grade</p>
         <p class="t">Lower School Band</p>
-        <p class="d">Beginning band. Instrument rental, choosing an instrument, the cost calculator, and the practice standard.</p>
+        <p class="d">Beginning band. Picking an instrument, rental, the cost calculator, and the practice standard.</p>
         <p class="when">First day with instruments: Tue, Aug 11</p>
       </a>
       <a href="upper-school/">
+        <svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path class="ink" d="M38 15q13 5 15 17l7 42q3 19 19 19t17-19l-3-19" stroke-width="7" stroke-linecap="round"/> <ellipse class="ink" cx="90" cy="42" rx="16" ry="10" transform="rotate(-22 90 42)"/> <path class="acc" d="M33 13l-6-3"/> <circle class="accf" cx="58" cy="46" r="3.4"/> <circle class="accf" cx="61" cy="60" r="3.4"/> <circle class="accf" cx="64" cy="74" r="3.4"/></svg>
         <p class="g">Middle &amp; High School</p>
         <p class="t">Upper School Band</p>
-        <p class="d">A performing ensemble. Experience required, letter grade, after-school rehearsals before concerts.</p>
+        <p class="d">A performing ensemble. Experience required, a letter grade every quarter, two combined concerts.</p>
         <p class="when">Starts Thu, Aug 6. We play that day.</p>
       </a>
       <a href="ukulele/">
+        <svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path class="ink" d="M60 46c-10 0-16 5-18 11-1 5 0 9 3 12-5 4-8 10-7 16 2 10 11 17 22 17s20-7 22-17c1-6-2-12-7-16 3-3 4-7 3-12-2-6-8-11-18-11z"/> <circle class="ink" cx="60" cy="82" r="8"/> <path class="ink" d="M55 46V18h10v28z"/> <path class="ink" d="M52 6h16v12H52z"/> <circle class="accf" cx="47" cy="9" r="2.8"/> <circle class="accf" cx="47" cy="16" r="2.8"/> <circle class="accf" cx="73" cy="9" r="2.8"/> <circle class="accf" cx="73" cy="16" r="2.8"/> <path class="acc" d="M57 20v26M60 20v26M63 20v26"/> <path class="acc" d="M50 96h20"/></svg>
         <p class="g">3rd Grade</p>
         <p class="t">Ukulele</p>
-        <p class="d">Every third grader. Nothing to buy, nothing to sign. Take-home schedule and practice expectations.</p>
+        <p class="d">Every third grader. Nothing to buy, nothing to sign. Take-home schedule and practice.</p>
         <p class="when">Instrument and materials provided</p>
       </a>
       <a href="faq/">
+        <svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect class="ink" x="18" y="26" width="84" height="76" rx="8"/> <path class="ink" d="M18 48h84"/> <path class="ink" d="M38 26V14M82 26V14"/> <circle class="accf" cx="40" cy="66" r="5"/> <circle class="accf" cx="60" cy="66" r="5"/> <circle class="accf" cx="80" cy="66" r="5"/> <circle class="accf" cx="40" cy="84" r="5"/> <circle class="accf" cx="60" cy="84" r="5"/></svg>
         <p class="g">Every Grade</p>
         <p class="t">Frequently Asked</p>
-        <p class="d">Searchable answers on cost, lessons, concerts, grading, practice, instruments, and more.</p>
+        <p class="d">Searchable answers on cost, lessons, concerts, grading, practice, and instruments.</p>
         <p class="when">Can't find it? Email me directly</p>
       </a>
     </div>

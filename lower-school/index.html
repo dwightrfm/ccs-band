@@ -35,6 +35,49 @@
     .nav .inner{padding:0 12px;}
     .nav a.tab{padding:12px 10px;font-size:11.5px;letter-spacing:.03em;}
   }
+
+  /* ---- Instrument line art -------------------------------------------
+     Colors live here, not in the SVG, so the art follows the palette. */
+  .art{display:block;width:100%;height:auto;overflow:visible;}
+  .art .ink{fill:none;stroke:var(--navy);stroke-width:3;
+            stroke-linecap:round;stroke-linejoin:round;}
+  .art .inkf{fill:var(--navy);stroke:none;}
+  .art .acc{fill:none;stroke:var(--gold);stroke-width:2.6;
+            stroke-linecap:round;stroke-linejoin:round;}
+  .art .accf{fill:var(--gold);stroke:none;}
+
+  /* A picture-first grid. The caption is a label for the drawing, not a
+     paragraph — if it needs a sentence it belongs in a .box instead. */
+  .instgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px;}
+  .inst{
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    border-radius:10px;
+    padding:16px 10px 13px;
+    text-align:center;
+  }
+  .inst .art{max-width:82px;margin:0 auto 9px;}
+  .inst .n{font-size:13.5px;font-weight:700;color:var(--navy);margin:0;line-height:1.3;}
+  .inst .s{font-size:11.5px;color:var(--muted);margin:3px 0 0;line-height:1.35;}
+  /* A short row of three, for the upper-school-only instruments. Needs its own
+     class rather than an inline grid-template — an inline style outranks the
+     media query below and would stay three-across on a phone. */
+  .instgrid.three{grid-template-columns:repeat(3,1fr);max-width:430px;}
+  @media (max-width:620px){
+    .instgrid,
+    .instgrid.three{grid-template-columns:repeat(2,1fr);max-width:none;}
+  }
+
+  /* A single hero-sized drawing, for the ukulele page. */
+  .artbig{max-width:250px;margin:6px auto 0;}
+
+  /* Hero art sits on navy, so it needs the light-on-dark treatment. Keep it
+     small — it is a mark above the headline, not a picture competing with it. */
+  .hero .art{max-width:74px;margin:0 auto 16px;}
+  .hero .art .ink{stroke:#d9bf7e;stroke-width:2.6;}
+  .hero .art .inkf{fill:#d9bf7e;}
+  .hero .art .acc{stroke:#8fa0c8;stroke-width:2.4;}
+  .hero .art .accf{fill:#8fa0c8;}
 </style>
 </head>
 <body>
@@ -385,8 +428,9 @@
     </svg>
     <p class="k1">Cary Christian School</p>
   </div>
+  <svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse class="inkf" cx="34" cy="84" rx="15" ry="11" transform="rotate(-20 34 84)"/> <path class="ink" d="M48 82V26" stroke-width="5"/> <ellipse class="inkf" cx="80" cy="72" rx="15" ry="11" transform="rotate(-20 80 72)"/> <path class="ink" d="M94 70V14" stroke-width="5"/> <path class="ink" d="M48 27 94 15" stroke-width="11" stroke-linecap="butt"/></svg>
   <h1>Lower School Band 2026-2027</h1>
-  <p>4th and 5th grade. Everything you need for the year in one place. No forms to hunt down, no separate email threads.</p>
+  <p>4th and 5th grade. Everything for the year in one place.</p>
 </div>
 
 <div class="wrap">
@@ -412,21 +456,37 @@
   </section>
 
   <section>
+    <p class="eyebrow">The Instruments</p>
+    <h2>What your student can play</h2>
+    <p class="lead">Eight choices. Show your student the pictures and see what they point at, then read the monthly cost underneath.</p>
+    <div class="instgrid">
+      <div class="inst"><svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect class="ink" x="11" y="53" width="98" height="14" rx="7"/> <ellipse class="acc" cx="27" cy="47" rx="8" ry="5"/> <circle class="accf" cx="50" cy="60" r="3.6"/> <circle class="accf" cx="64" cy="60" r="3.6"/> <circle class="accf" cx="78" cy="60" r="3.6"/> <circle class="accf" cx="92" cy="60" r="3.6"/> <path class="ink" d="M104 51v18"/></svg><p class="n">Flute</p><p class="s">$30/mo rental</p></div>
+      <div class="inst"><svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path class="ink" d="M55 12h10v13H55z"/> <path class="ink" d="M54 25h12l3 57H51z"/> <path class="ink" d="M51 82q-9 15-11 25h40q-2-10-11-25z"/> <circle class="accf" cx="60" cy="38" r="3.4"/> <circle class="accf" cx="60" cy="50" r="3.4"/> <circle class="accf" cx="60" cy="62" r="3.4"/> <path class="acc" d="M69 44h6M69 68h6"/></svg><p class="n">Clarinet</p><p class="s">$30/mo rental</p></div>
+      <div class="inst"><svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path class="ink" d="M38 15q13 5 15 17l7 42q3 19 19 19t17-19l-3-19" stroke-width="7" stroke-linecap="round"/> <ellipse class="ink" cx="90" cy="42" rx="16" ry="10" transform="rotate(-22 90 42)"/> <path class="acc" d="M33 13l-6-3"/> <circle class="accf" cx="58" cy="46" r="3.4"/> <circle class="accf" cx="61" cy="60" r="3.4"/> <circle class="accf" cx="64" cy="74" r="3.4"/></svg><p class="n">Alto Sax</p><p class="s">$45/mo rental</p></div>
+      <div class="inst"><svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle class="ink" cx="11" cy="58" r="5"/> <path class="ink" d="M16 58h70"/> <rect class="ink" x="45" y="44" width="9" height="28" rx="3"/> <rect class="ink" x="58" y="44" width="9" height="28" rx="3"/> <rect class="ink" x="71" y="44" width="9" height="28" rx="3"/> <path class="acc" d="M49.5 44v-8M62.5 44v-8M75.5 44v-8"/> <path class="ink" d="M86 44 108 26v64L86 72z"/> <ellipse class="ink" cx="108" cy="58" rx="3.5" ry="32"/> <path class="acc" d="M30 58q-9 15 4 20h14"/></svg><p class="n">Trumpet</p><p class="s">$30/mo rental</p></div>
+      <div class="inst"><svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path class="ink" d="M16 32 40 48v24L16 88z"/> <ellipse class="ink" cx="16" cy="60" rx="3.5" ry="28"/> <path class="ink" d="M40 54h54"/> <path class="ink" d="M40 66h54"/> <path class="ink" d="M94 54q11 0 11 6t-11 6"/> <circle class="ink" cx="48" cy="34" r="4.5"/> <path class="ink" d="M48 39v9"/> <path class="acc" d="M62 50v20M78 50v20"/></svg><p class="n">Trombone</p><p class="s">$30/mo rental</p></div>
+      <div class="inst"><svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path class="ink" d="M52 68q-14 1-19 10t-1 21q6 10 17 10h22q11 0 17-10t-1-21-19-10"/> <path class="ink" d="M52 68h18"/> <path class="ink" d="M56 68V18h9v50z"/> <path class="ink" d="M54 2h15v16H54z"/> <circle class="accf" cx="49" cy="5" r="2.3"/> <circle class="accf" cx="49" cy="10" r="2.3"/> <circle class="accf" cx="49" cy="15" r="2.3"/> <circle class="accf" cx="49" cy="20" r="2.3"/> <path class="acc" d="M58.5 20v48M62.5 20v48"/> <path class="acc" d="M46 84h26"/> <circle class="accf" cx="76" cy="96" r="3.2"/></svg><p class="n">Bass Guitar</p><p class="s">$118 once, not rented</p></div>
+      <div class="inst"><svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path class="ink" d="M20 78 34 40h58l12 38z"/> <path class="acc" d="M40 48h44M39 56h48M38 64h52M37 72h56"/> <path class="ink" d="M14 96l22-14M50 96l14-9"/> <circle class="inkf" cx="12" cy="99" r="5"/> <circle class="inkf" cx="48" cy="99" r="5"/></svg><p class="n">Bells</p><p class="s">$95 once, not rented</p></div>
+      <div class="inst"><svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse class="ink" cx="60" cy="62" rx="40" ry="13"/> <path class="ink" d="M20 62v22q0 13 40 13t40-13V62"/> <path class="acc" d="M32 74v14M60 78v16M88 74v14"/> <path class="ink" d="M26 44 66 18M52 46 96 22"/></svg><p class="n">Percussion</p><p class="s">School's drums, $13 sticks</p></div>
+    </div>
+    <p class="lead" style="margin-top:16px;font-size:13px;">Section seats are limited, so not everyone gets a first choice. Every instrument here has a real part to play. For a full year's cost on any of them, use the <a href="#investment" style="color:var(--gold-deep);font-weight:600;">calculator below</a>.</p>
+  </section>
+
+  <section>
     <p class="eyebrow">Instrument Rental</p>
     <h2>Renting through Joyful Noise</h2>
-    <p class="lead">All band instrument rentals go directly through Joyful Noise, a family-owned NC rental company serving CCS since 1997. Month-to-month, no long-term commitment. Free maintenance, with a loaner instrument if yours needs repair. Instruments are delivered to the classroom, so there is no driving required.</p>
+    <p class="lead">Rentals go through Joyful Noise, a family-owned NC company serving CCS since 1997. Month to month, free maintenance, a loaner if yours needs repair, and delivery straight to the classroom.</p>
     <div class="grid2">
-      <div class="box"><h3>Pricing (per month, incl. tax)</h3><p>Trumpet, trombone, flute, clarinet: $30/mo<br />Alto saxophone: $45/mo</p></div>
       <div class="box"><h3>Contact Joyful Noise</h3><p>Call or text 919-386-9335<br />info@joyfulnoiserentals.com<br /><a href="https://sites.google.com/joyfulnoiserentals.com/jnr">joyfulnoiserentals.com</a></p></div>
+      <div class="box"><h3>Buying later</h3><p>50% of what you pay in rental counts toward purchasing a used instrument, if you decide to buy.</p></div>
     </div>
-    <div class="box" style="margin-top:16px;"><h3>How renting works</h3><p>Joyful Noise's own information sheet: how to start a rental, what's covered, maintenance and loaners, and how to reach them. <a href="https://drive.google.com/file/d/1BoGtm1nvOj7ZpWQaA8Y3t9_gCvT94uJv/view?usp=sharing" style="color:var(--gold-deep);font-weight:600;">Open the Joyful Noise rental details (PDF) →</a></p></div>
-    <p class="lead" style="margin-top:14px;font-size:13px;">50% of what you pay in rental fees counts toward purchasing a used instrument later, if you decide to buy.</p>
+    <div class="box" style="margin-top:16px;"><h3>How renting works</h3><p>Joyful Noise's own information sheet: starting a rental, what's covered, maintenance and loaners. <a href="https://drive.google.com/file/d/1BoGtm1nvOj7ZpWQaA8Y3t9_gCvT94uJv/view?usp=sharing" style="color:var(--gold-deep);font-weight:600;">Open the Joyful Noise rental details (PDF) →</a></p></div>
   </section>
 
   <section>
     <p class="eyebrow">Lessons</p>
     <h2>Private lessons</h2>
-    <p class="lead">Mr. Dillon-Seminario is not teaching private lessons this year. Families arrange lessons independently with a private teacher. Use the list below to find one for your student's instrument.</p>
+    <p class="lead">I'm not teaching private lessons this year. Families find their own teacher, and the list below is sorted by instrument.</p>
     <div class="box" style="margin-bottom:16px;"><h3>Percussion students</h3><p>Our middle school percussion assistant is offering private lessons to <b>percussion students only</b>. If your student plays percussion and you'd like lessons, email me and I'll connect you.</p></div>
     <div class="grid2">
       <div class="box"><h3>Private Teacher List</h3><p>Local private instructors by instrument, with phone and email. <a href="https://docs.google.com/spreadsheets/d/1nerxU-ziV4plVYY08HL2DHxt6MGUxx6Nt5vG8iebGv0/edit?gid=0#gid=0" style="color:var(--gold-deep);font-weight:600;">Open the Private Teacher List →</a></p></div>
@@ -437,14 +497,13 @@
   <section>
     <p class="eyebrow">Concerts</p>
     <h2>Performances this year</h2>
-    <p class="lead">4th and 5th grade band concert dates are still being confirmed. I'll email them as soon as they're set, with call times and what to wear. These are separate from the Upper School concerts.</p>
-    <div class="box"><h3>What to expect</h3><p>Concerts are the point the whole year builds toward. Once dates are set they go out by email and land on this page.</p></div>
+    <p class="lead">Concerts are what the whole year builds toward. 4th and 5th grade dates are still being confirmed, separately from the Upper School concerts. They'll go out by email and land on this page as soon as they're set, with call times and what to wear.</p>
   </section>
 
   <section>
     <p class="eyebrow">The One Thing That Matters Most</p>
     <h2>Practice 3 times a week, minimum 30 minutes</h2>
-    <p class="lead">Every band student practices at home at least 3 times a week, for a minimum of 30 minutes each time. This is what makes progress possible, and class time alone isn't enough.</p>
+    <p class="lead">Class time alone isn't enough to make progress. Every band student practices at home, 3 times a week, 30 minutes minimum.</p>
     <div class="whatcounts">
       <p class="wc-h">What counts as practice</p>
       <p class="wc-yes"><b>Yes:</b> your student playing on their own, at home.</p>
