@@ -175,6 +175,36 @@
     margin:10px 0 0;
   }
 
+  /* ---- What counts as practice ----------------------------------------
+     Deliberately loud. Parents counting rehearsal or lesson time toward the
+     3x/week standard is the most common misunderstanding of the whole policy. */
+  .whatcounts{
+    background:#fff;
+    border:1px solid var(--panel-line);
+    border-left:4px solid var(--navy);
+    border-radius:8px;
+    padding:16px 18px;
+    margin:0 0 18px;
+  }
+  .whatcounts p{margin:0;font-size:14.5px;}
+  .whatcounts .wc-h{
+    font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--gold-deep);font-weight:700;margin:0 0 9px;
+  }
+  .whatcounts .wc-yes{color:var(--ink);margin-bottom:7px;}
+  .whatcounts .wc-yes b{color:#1d6b45;}
+  .whatcounts .wc-no{color:var(--muted);margin-bottom:5px;}
+  .whatcounts .wc-no b{color:#a32c2c;}
+  .whatcounts .wc-t{
+    color:var(--muted);font-size:13.5px;
+    margin-top:11px;padding-top:10px;border-top:1px solid var(--line);
+  }
+
+  /* The practice-log link stays hidden until the form URL is set, so it can
+     never render as a live link that goes nowhere. */
+  .practice-log-link{display:none;}
+  .practice-log-soon{font-size:13px;color:var(--muted);font-style:italic;}
+
   /* ---- Investment calculator ------------------------------------------
      Scoped under #investment so nothing here collides with the .box /
      .lead / .grid2 rules the rest of the page uses. */
