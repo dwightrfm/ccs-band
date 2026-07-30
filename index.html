@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>CCS Band — Family Info</title>
-<meta name="description" content="Cary Christian School band information for families, 2026-2027: instrument rental, lessons, the practice standard, and the participation agreement.">
+<meta name="description" content="Cary Christian School band information for families, 2026-2027: instrument rental, lessons, the monthly investment, the practice standard, and the participation agreement.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎺</text></svg>">
 </head>
 <body>
@@ -145,6 +145,158 @@
     margin:10px 0 0;
   }
 
+  /* ---- Investment calculator ------------------------------------------
+     Scoped under #investment so nothing here collides with the .box /
+     .lead / .grid2 rules the rest of the page uses. */
+  #investment .calc{
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    border-radius:10px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  #investment fieldset{border:0;margin:0;padding:0;min-width:0;}
+  #investment .ctl-label{
+    font-size:11px;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+    font-weight:700;
+    padding:0;
+    margin:0 0 10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:10px;
+    width:100%;
+  }
+  #investment .ctl-val{
+    font-size:14px;
+    letter-spacing:0;
+    text-transform:none;
+    color:var(--navy);
+    font-weight:700;
+    font-variant-numeric:tabular-nums;
+  }
+  #investment .pills{display:flex;flex-wrap:wrap;gap:7px;}
+  #investment .pill{
+    font:inherit;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--navy);
+    background:#fff;
+    border:1px solid var(--panel-line);
+    border-radius:999px;
+    padding:8px 15px;
+    cursor:pointer;
+  }
+  #investment .pill:hover{border-color:var(--gold);}
+  #investment .pill[aria-checked="true"]{
+    background:var(--navy);
+    border-color:var(--navy);
+    color:#d9bf7e;
+  }
+  #investment .pill:focus-visible,
+  #investment input[type=range]:focus-visible{
+    outline:2px solid var(--gold-deep);
+    outline-offset:2px;
+  }
+  #investment .ctl-row{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  #investment input[type=range]{
+    width:100%;
+    accent-color:var(--gold-deep);
+    margin:0;
+  }
+  #investment .scale{
+    display:flex;
+    justify-content:space-between;
+    font-size:11.5px;
+    color:var(--muted);
+    margin-top:3px;
+    font-variant-numeric:tabular-nums;
+  }
+
+  #investment .lines{
+    border-top:1px solid var(--panel-line);
+    padding-top:16px;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+  #investment .line{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:14px;
+    font-size:14.5px;
+  }
+  #investment .line .k{color:var(--ink);}
+  #investment .line .sub{display:block;font-size:12.5px;color:var(--muted);}
+  #investment .line .v{
+    font-weight:700;
+    color:var(--navy);
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  /* One-time rows sit behind the recurring ones. Keep the weight at normal —
+     bolding a de-emphasized row makes it read as the most important line. */
+  #investment .line.muted .k{color:var(--muted);font-weight:400;}
+  #investment .line.muted .v{color:var(--muted);font-weight:600;}
+
+  #investment .totals{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  #investment .tot{
+    background:#fff;
+    border:1px solid var(--panel-line);
+    border-radius:8px;
+    padding:15px 17px;
+  }
+  #investment .tot.lead-tot{background:var(--navy);border-color:var(--navy);}
+  #investment .tot .lbl{
+    font-size:10.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--gold-deep);
+    margin:0 0 5px;
+  }
+  #investment .tot.lead-tot .lbl{color:#b9a06a;}
+  #investment .tot .num{
+    font-size:27px;
+    font-weight:800;
+    color:var(--navy);
+    margin:0;
+    letter-spacing:-.5px;
+    font-variant-numeric:tabular-nums;
+  }
+  #investment .tot.lead-tot .num{color:#d9bf7e;}
+  #investment .tot .cap{font-size:12px;color:var(--muted);margin:4px 0 0;}
+  #investment .tot.lead-tot .cap{color:#c9d0e3;}
+
+  #investment .onetime{
+    background:#fff4e0;
+    border:1px solid #ecd8a6;
+    border-radius:8px;
+    padding:13px 16px;
+    font-size:13.5px;
+    color:#7a5c0f;
+  }
+  #investment .onetime b{color:#5c4409;}
+  #investment .callout{
+    font-size:13.5px;
+    color:var(--muted);
+    margin:0;
+    padding-top:2px;
+  }
+  #investment .callout b{color:var(--navy);}
+
+  @media (max-width:560px){
+    #investment .ctl-row,
+    #investment .totals{grid-template-columns:1fr;}
+    #investment .tot .num{font-size:24px;}
+  }
+
   .faq dt{font-weight:700;color:var(--navy);margin:18px 0 4px;font-size:15px;}
   .faq dd{margin:0;color:var(--muted);font-size:14px;}
 
@@ -208,6 +360,50 @@
     <div class="box"><h3>How it's tracked</h3><p>Practice is logged in MakeMusic Cloud. If 10+ days pass with nothing logged, you'll get a short, direct email — not a warning, just a nudge.</p></div>
   </section>
 
+  <section id="investment">
+    <p class="eyebrow">What It Costs</p>
+    <h2>Your monthly investment</h2>
+    <p class="lead">Pick your student's instrument for a real number. Lessons are the largest piece and you arrange them yourself, so the rate is yours — the slider starts at the low end of what local teachers charge.</p>
+
+    <div class="calc">
+      <fieldset>
+        <legend class="ctl-label">Instrument</legend>
+        <div class="pills" id="instPills" role="radiogroup" aria-label="Instrument"></div>
+      </fieldset>
+
+      <div class="ctl-row">
+        <fieldset>
+          <legend class="ctl-label">Lesson rate <span class="ctl-val" id="rateOut">$25/hr</span></legend>
+          <input type="range" id="rate" min="25" max="40" step="5" value="25"
+                 aria-label="Lesson rate per hour" />
+          <div class="scale"><span>$25</span><span>$40</span></div>
+        </fieldset>
+        <fieldset>
+          <legend class="ctl-label">Lessons</legend>
+          <div class="pills" id="freqPills" role="radiogroup" aria-label="Lesson frequency"></div>
+        </fieldset>
+      </div>
+
+      <div class="lines" id="lines"></div>
+
+      <div class="totals">
+        <div class="tot lead-tot">
+          <p class="lbl">Every month</p>
+          <p class="num" id="mo">$130</p>
+          <p class="cap" id="moCap">Lessons plus rental</p>
+        </div>
+        <div class="tot">
+          <p class="lbl">9-month school year</p>
+          <p class="num" id="yr">$1,185</p>
+          <p class="cap">Everything, start to finish</p>
+        </div>
+      </div>
+
+      <div class="onetime" id="onetime"></div>
+      <p class="callout" id="callout"></p>
+    </div>
+  </section>
+
   <section>
     <p class="eyebrow">Sign Your Agreement</p>
     <h2>One agreement, signed once, no paper</h2>
@@ -235,6 +431,140 @@
       <dd>Veracross, updated every two weeks with what's happening in band.</dd>
     </dl>
   </section>
+
+  <script>
+  (function () {
+    /* Rental figures are Joyful Noise's confirmed 2026-07-16 pricing.
+       Bass guitar and bells are NOT rentable through them, so those families
+       buy once instead — hence `buy` rather than `rent`. Equipment prices are
+       entry-level Amazon listings checked 2026-07-28. */
+    var BOOK = 15;
+    var MONTHS = 9;
+
+    var INSTRUMENTS = [
+      { id: 'flute',    label: 'Flute',       rent: 30 },
+      { id: 'clarinet', label: 'Clarinet',    rent: 30 },
+      { id: 'altosax',  label: 'Alto Sax',    rent: 45 },
+      { id: 'trumpet',  label: 'Trumpet',     rent: 30 },
+      { id: 'trombone', label: 'Trombone',    rent: 30 },
+      { id: 'bass',     label: 'Bass Guitar', rent: 0, buy: 118, buyLabel: 'Starter bass and amp' },
+      { id: 'bells',    label: 'Bells',       rent: 0, buy: 95,  buyLabel: '32-note bell kit' }
+    ];
+
+    var FREQS = [
+      { id: 'weekly', label: 'Weekly', per: 4, note: 'recommended' },
+      { id: 'biweekly', label: 'Every other week', per: 2 },
+      { id: 'none', label: 'None yet', per: 0 }
+    ];
+
+    var state = { inst: 'trumpet', rate: 25, freq: 'weekly' };
+
+    var $ = function (id) { return document.getElementById(id); };
+    var money = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+
+    function buildPills(host, items, key) {
+      host.innerHTML = '';
+      items.forEach(function (it) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'pill';
+        b.setAttribute('role', 'radio');
+        b.textContent = it.label;
+        b.addEventListener('click', function () { state[key] = it.id; render(); });
+        b.dataset.id = it.id;
+        host.appendChild(b);
+      });
+    }
+
+    function find(list, id) {
+      for (var i = 0; i < list.length; i++) { if (list[i].id === id) return list[i]; }
+      return list[0];
+    }
+
+    function render() {
+      var inst = find(INSTRUMENTS, state.inst);
+      var freq = find(FREQS, state.freq);
+
+      var lessons = state.rate * freq.per;
+      var rental = inst.rent;
+      var monthly = lessons + rental;
+      var oneTime = BOOK + (inst.buy || 0);
+      var year = monthly * MONTHS + oneTime;
+
+      /* Reflect selection state on both pill groups. */
+      [['instPills', 'inst'], ['freqPills', 'freq']].forEach(function (pair) {
+        var kids = $(pair[0]).children;
+        for (var i = 0; i < kids.length; i++) {
+          kids[i].setAttribute('aria-checked', kids[i].dataset.id === state[pair[1]] ? 'true' : 'false');
+        }
+      });
+
+      $('rateOut').textContent = '$' + state.rate + '/hr';
+
+      var rows = [];
+      if (freq.per > 0) {
+        rows.push({
+          k: 'Private lessons',
+          sub: freq.label.toLowerCase() + ' at $' + state.rate + '/hr — ' + freq.per + ' a month',
+          v: money(lessons) + '/mo'
+        });
+      } else {
+        rows.push({ k: 'Private lessons', sub: 'none scheduled yet', v: '$0', muted: true });
+      }
+
+      if (rental > 0) {
+        rows.push({ k: 'Instrument rental', sub: 'Joyful Noise, month to month', v: money(rental) + '/mo' });
+      } else {
+        rows.push({
+          k: 'Instrument',
+          sub: inst.buyLabel + ' — bought once, not rented',
+          v: money(inst.buy), muted: true
+        });
+      }
+
+      rows.push({ k: 'Essential Elements Book 1', sub: 'one time', v: money(BOOK), muted: true });
+
+      $('lines').innerHTML = rows.map(function (r) {
+        return '<div class="line' + (r.muted ? ' muted' : '') + '">' +
+               '<span class="k">' + r.k + '<span class="sub">' + r.sub + '</span></span>' +
+               '<span class="v">' + r.v + '</span></div>';
+      }).join('');
+
+      $('mo').textContent = money(monthly);
+      $('moCap').textContent = rental > 0
+        ? (freq.per > 0 ? 'Lessons plus rental' : 'Rental only')
+        : (freq.per > 0 ? 'Lessons only — nothing to rent' : 'No recurring cost');
+      $('yr').textContent = money(year);
+
+      $('onetime').innerHTML = '<b>' + money(oneTime) + ' due up front</b> — ' +
+        (inst.buy
+          ? 'the ' + inst.buyLabel.toLowerCase() + ' (' + money(inst.buy) + ') and the book (' + money(BOOK) + ').'
+          : 'the book. Rental starts the month your student begins.');
+
+      var pct = monthly > 0 ? Math.round((lessons / monthly) * 100) : 0;
+      if (freq.per > 0 && rental > 0) {
+        $('callout').innerHTML = 'Lessons are <b>' + pct + '%</b> of that monthly number. ' +
+          'The instrument itself is ' + money(rental) + ' a month — so if the total looks steep, ' +
+          'lesson frequency is the lever, not the rental.';
+      } else if (freq.per > 0) {
+        $('callout').innerHTML = 'There is no rental for this one, so lessons are the entire monthly cost. ' +
+          'Students who already read music sometimes start without weekly lessons — set it to ' +
+          '<b>None yet</b> to see that.';
+      } else {
+        $('callout').innerHTML = 'No lessons scheduled means no recurring lesson cost — but progress ' +
+          'depends far more on the <b>3x a week practice standard</b> above than on lessons.';
+      }
+    }
+
+    buildPills($('instPills'), INSTRUMENTS, 'inst');
+    buildPills($('freqPills'), FREQS, 'freq');
+    $('rate').addEventListener('input', function (e) {
+      state.rate = parseInt(e.target.value, 10);
+      render();
+    });
+    render();
+  })();
+  </script>
 
   <section style="border-bottom:none;">
     <div class="contact">
