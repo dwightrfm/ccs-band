@@ -85,9 +85,31 @@
   footer a{color:var(--gold-deep);font-weight:600;text-decoration:none;}
 
   @media (prefers-reduced-motion: reduce){*{transition:none !important;}}
+
+  .nav{background:#0a1428;border-bottom:1px solid rgba(217,191,126,.22);}
+  .nav ul{
+    max-width:760px;margin:0 auto;padding:0 24px;
+    list-style:none;display:flex;gap:4px;
+  }
+  .nav a{
+    display:block;padding:13px 15px;
+    font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    color:#8f9cba;text-decoration:none;
+    border-bottom:2px solid transparent;
+  }
+  .nav a:hover{color:#d9bf7e;}
+  .nav a[aria-current="page"]{color:#d9bf7e;border-bottom-color:#d9bf7e;}
+  .nav a:focus-visible{outline:2px solid #d9bf7e;outline-offset:-3px;}
+  @media (max-width:420px){
+    .nav ul{padding:0 12px;}
+    .nav a{padding:12px 10px;font-size:12px;letter-spacing:.04em;}
+  }
+
 </style>
 </head>
 <body>
+
+<nav class="nav" aria-label="Band program pages"><ul><li><a href="../">Band</a></li><li><a href="../ukulele/">Ukulele</a></li><li><a href="./" aria-current="page">FAQ</a></li></ul></nav>
 
 <div class="hero">
   <p class="k1">Cary Christian School &middot; Band &amp; Ukulele</p>
@@ -101,7 +123,7 @@
     <input type="search" id="search" placeholder="Search questions and answers&hellip;"
            aria-label="Search the FAQ" autocomplete="off" />
     <p class="hint">
-      <span id="count">23 questions</span>
+      <span id="count">25 questions</span>
       <span><span class="star">*</span> answer coming soon &mdash; email me and I'll reply directly</span>
     </p>
   </div>
@@ -113,7 +135,7 @@
 <section class="grp" data-cat="Practice"><h2>Practice</h2><details class="qa"><summary>How much should my student practice?</summary><div class="ans"><p>Three times a week, 30 minutes per session, minimum — every grade, no exceptions. Class time alone isn&#x27;t enough to make progress. This is the single thing that most separates students who thrive in band from students who quit.</p></div></details><details class="qa"><summary>How is practice tracked, and what happens if my student falls behind?</summary><div class="ans"><p>Practice is logged in MakeMusic Cloud. If ten or more days pass with nothing logged, you&#x27;ll get a short email from me — that&#x27;s a heads-up, not a warning, and there&#x27;s no classroom penalty attached to it. The practice commitment is between you and your student at home; my job is to make sure it isn&#x27;t quietly slipping.</p></div></details><details class="qa is-tbd"><summary>How do I log into MakeMusic Cloud to see my student&#x27;s practice?<span class="star" role="img" aria-label="answer coming soon">*</span></summary><div class="ans"><p class="tbd">Under construction — I&#x27;m still writing this one. Email me and I&#x27;ll answer you directly in the meantime.</p></div></details></section>
 <section class="grp" data-cat="In Class"><h2>In Class</h2><details class="qa"><summary>What if my student forgets their instrument?</summary><div class="ans"><p>Your student needs their instrument every class day. If it&#x27;s forgotten, I log it in Veracross that same class session, so you&#x27;ll see it the same day rather than weeks later. It isn&#x27;t a punishment — it&#x27;s so a pattern doesn&#x27;t go unnoticed.</p></div></details><details class="qa is-tbd"><summary>What&#x27;s the difference between general music and band?<span class="star" role="img" aria-label="answer coming soon">*</span></summary><div class="ans"><p class="tbd">Under construction — I&#x27;m still writing this one. Email me and I&#x27;ll answer you directly in the meantime.</p></div></details></section>
 <section class="grp" data-cat="Concerts"><h2>Concerts</h2><details class="qa is-tbd"><summary>When are the concerts, and what does my student wear?<span class="star" role="img" aria-label="answer coming soon">*</span></summary><div class="ans"><p class="tbd">Under construction — I&#x27;m still writing this one. Email me and I&#x27;ll answer you directly in the meantime.</p></div></details></section>
-<section class="grp" data-cat="Ukulele"><h2>Ukulele</h2><details class="qa is-tbd"><summary>Does my 3rd grader need to buy a ukulele?<span class="star" role="img" aria-label="answer coming soon">*</span></summary><div class="ans"><p class="tbd">Under construction — I&#x27;m still writing this one. Email me and I&#x27;ll answer you directly in the meantime.</p></div></details><details class="qa is-tbd"><summary>Does the band agreement apply to ukulele families?<span class="star" role="img" aria-label="answer coming soon">*</span></summary><div class="ans"><p class="tbd">Under construction — I&#x27;m still writing this one. Email me and I&#x27;ll answer you directly in the meantime.</p></div></details></section>
+<section class="grp" data-cat="Ukulele"><h2>Ukulele</h2><details class="qa"><summary>Does my 3rd grader need to buy a ukulele or a book?</summary><div class="ans"><p>Neither. The ukulele is provided, and there&#x27;s no book to buy — everything students need to learn is in a presentation I use in class. There is nothing to purchase for ukulele. Full details are on the Ukulele page.</p></div></details><details class="qa"><summary>Can the ukulele come home?</summary><div class="ans"><p>Yes, on Tuesday and Wednesday nights. Every other night the ukulele stays at school — instruments are shared, and weekends are where they get lost or damaged.</p></div></details><details class="qa"><summary>Is ukulele practice tracked like band practice?</summary><div class="ans"><p>No. Students are expected to practice enough to keep up with the class, but it runs on the honor system — no log, no app. A few minutes on the days the ukulele comes home is plenty at this age.</p></div></details><details class="qa"><summary>Do ukulele families sign the band participation agreement?</summary><div class="ans"><p>No. That agreement is for band students who rent an instrument through Joyful Noise. Ukulele families have nothing to sign.</p></div></details></section>
 <section class="grp" data-cat="Communication"><h2>Communication</h2><details class="qa"><summary>How will I know how my student is doing?</summary><div class="ans"><p>I post a band update in Veracross every two weeks — what we&#x27;re working on and what&#x27;s coming up. Grades are in Veracross as well. If your student is struggling, you&#x27;ll hear from me directly; I&#x27;m not going to let you find out from a report card. Any email you send gets a reply within 24 hours.</p></div></details><details class="qa is-tbd"><summary>How is band graded?<span class="star" role="img" aria-label="answer coming soon">*</span></summary><div class="ans"><p class="tbd">Under construction — I&#x27;m still writing this one. Email me and I&#x27;ll answer you directly in the meantime.</p></div></details></section>
 
   <p class="noresults">Nothing matches that search. Try a different word, or just email me.</p>
