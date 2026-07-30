@@ -204,6 +204,12 @@
     outline-offset:2px;
   }
   #investment .ctl-row{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  #investment [hidden]{display:none;}
+  #investment .ctl-hint{
+    font-size:12.5px;
+    color:var(--muted);
+    margin:9px 0 0;
+  }
   #investment input[type=range]{
     width:100%;
     accent-color:var(--gold-deep);
@@ -384,6 +390,12 @@
         </fieldset>
       </div>
 
+      <fieldset id="setupWrap" hidden>
+        <legend class="ctl-label">What you buy for home</legend>
+        <div class="pills" id="setupPills" role="radiogroup" aria-label="Home setup"></div>
+        <p class="ctl-hint" id="setupHint"></p>
+      </fieldset>
+
       <div class="lines" id="lines"></div>
 
       <div class="totals">
@@ -448,7 +460,18 @@
       { id: 'trumpet',  label: 'Trumpet',     rent: 30 },
       { id: 'trombone', label: 'Trombone',    rent: 30 },
       { id: 'bass',     label: 'Bass Guitar', rent: 0, buy: 118, buyLabel: 'Starter bass and amp' },
-      { id: 'bells',    label: 'Bells',       rent: 0, buy: 95,  buyLabel: '32-note bell kit' }
+      { id: 'bells',    label: 'Bells',       rent: 0, buy: 95,  buyLabel: '32-note bell kit' },
+      /* Percussionists play the school's drums. Sticks are the only hard
+         requirement — the pad and snare kit are for practicing at home, which
+         is what actually moves a percussionist forward. */
+      { id: 'drums',    label: 'Drums',       rent: 0, setups: [
+        { id: 'sticks', label: 'Sticks only',   cost: 13, line: 'Snare sticks',
+          hint: 'All that’s required. Your student plays the school’s drums in class.' },
+        { id: 'pad',    label: 'Practice pad',  cost: 30, line: 'Practice pad, stand and sticks',
+          hint: 'Quiet enough for a bedroom, and the best value of the three for building technique.' },
+        { id: 'snare',  label: 'Snare kit',     cost: 69, line: 'Snare drum, stand, bag, pad and sticks',
+          hint: 'A real drum to practice on at home. Loud — the included mute pad helps.' }
+      ] }
     ];
 
     var FREQS = [
@@ -457,7 +480,8 @@
       { id: 'none', label: 'None yet', per: 0 }
     ];
 
-    var state = { inst: 'trumpet', rate: 25, freq: 'weekly' };
+    var state = { inst: 'trumpet', rate: 25, freq: 'weekly', setup: 'sticks' };
+    var setupOwner = null;
 
     var $ = function (id) { return document.getElementById(id); };
     var money = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
@@ -485,14 +509,34 @@
       var inst = find(INSTRUMENTS, state.inst);
       var freq = find(FREQS, state.freq);
 
+      /* Drums is the one instrument where the family chooses how much to buy,
+         so its equipment cost comes from the selected setup instead of a
+         fixed `buy`. Rebuild those pills whenever the instrument changes. */
+      var setup = null;
+      if (inst.setups) {
+        setup = find(inst.setups, state.setup);
+        if (setupOwner !== inst.id) {
+          buildPills($('setupPills'), inst.setups, 'setup');
+          setupOwner = inst.id;
+        }
+        $('setupWrap').hidden = false;
+        $('setupHint').textContent = setup.hint;
+      } else {
+        $('setupWrap').hidden = true;
+        setupOwner = null;
+      }
+
+      var equip = setup ? setup.cost : (inst.buy || 0);
+      var equipLine = setup ? setup.line : inst.buyLabel;
+
       var lessons = state.rate * freq.per;
       var rental = inst.rent;
       var monthly = lessons + rental;
-      var oneTime = BOOK + (inst.buy || 0);
+      var oneTime = BOOK + equip;
       var year = monthly * MONTHS + oneTime;
 
-      /* Reflect selection state on both pill groups. */
-      [['instPills', 'inst'], ['freqPills', 'freq']].forEach(function (pair) {
+      /* Reflect selection state on every pill group. */
+      [['instPills', 'inst'], ['freqPills', 'freq'], ['setupPills', 'setup']].forEach(function (pair) {
         var kids = $(pair[0]).children;
         for (var i = 0; i < kids.length; i++) {
           kids[i].setAttribute('aria-checked', kids[i].dataset.id === state[pair[1]] ? 'true' : 'false');
@@ -514,11 +558,14 @@
 
       if (rental > 0) {
         rows.push({ k: 'Instrument rental', sub: 'Joyful Noise, month to month', v: money(rental) + '/mo' });
+      } else if (setup) {
+        rows.push({ k: 'Drums', sub: 'provided by the school — nothing to rent', v: '$0', muted: true });
+        rows.push({ k: equipLine, sub: 'one time', v: money(equip), muted: true });
       } else {
         rows.push({
           k: 'Instrument',
-          sub: inst.buyLabel + ' — bought once, not rented',
-          v: money(inst.buy), muted: true
+          sub: equipLine + ' — bought once, not rented',
+          v: money(equip), muted: true
         });
       }
 
@@ -537,12 +584,17 @@
       $('yr').textContent = money(year);
 
       $('onetime').innerHTML = '<b>' + money(oneTime) + ' due up front</b> — ' +
-        (inst.buy
-          ? 'the ' + inst.buyLabel.toLowerCase() + ' (' + money(inst.buy) + ') and the book (' + money(BOOK) + ').'
+        (equip > 0
+          ? 'the ' + equipLine.toLowerCase() + ' (' + money(equip) + ') and the book (' + money(BOOK) + ').'
           : 'the book. Rental starts the month your student begins.');
 
       var pct = monthly > 0 ? Math.round((lessons / monthly) * 100) : 0;
-      if (freq.per > 0 && rental > 0) {
+      if (setup) {
+        $('callout').innerHTML = 'Drums are the cheapest instrument to start — the school owns them, ' +
+          'so there is <b>no rental at all</b>. Sticks are the only requirement. ' +
+          'A pad or snare at home is optional, but percussionists who practice on one progress ' +
+          'much faster than those who only play in class.';
+      } else if (freq.per > 0 && rental > 0) {
         $('callout').innerHTML = 'Lessons are <b>' + pct + '%</b> of that monthly number. ' +
           'The instrument itself is ' + money(rental) + ' a month — so if the total looks steep, ' +
           'lesson frequency is the lever, not the rental.';
