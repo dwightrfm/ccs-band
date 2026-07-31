@@ -47,7 +47,7 @@
   .art .accf{fill:var(--gold);stroke:none;}
 
   /* A picture-first grid. The caption is a label for the drawing, not a
-     paragraph — if it needs a sentence it belongs in a .box instead. */
+     paragraph. If it needs a sentence it belongs in a .box instead. */
   .instgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px;}
   .inst{
     background:var(--panel);
@@ -60,7 +60,7 @@
   .inst .n{font-size:13.5px;font-weight:700;color:var(--navy);margin:0;line-height:1.3;}
   .inst .s{font-size:11.5px;color:var(--muted);margin:3px 0 0;line-height:1.35;}
   /* A short row of three, for the upper-school-only instruments. Needs its own
-     class rather than an inline grid-template — an inline style outranks the
+     class rather than an inline grid-template. An inline style outranks the
      media query below and would stay three-across on a phone. */
   .instgrid.three{grid-template-columns:repeat(3,1fr);max-width:430px;}
   @media (max-width:620px){
@@ -72,7 +72,7 @@
   .artbig{max-width:250px;margin:6px auto 0;}
 
   /* Hero art sits on navy, so it needs the light-on-dark treatment. Keep it
-     small — it is a mark above the headline, not a picture competing with it. */
+     small. It is a mark above the headline, not a picture competing with it. */
   .hero .art{max-width:74px;margin:0 auto 16px;}
   .hero .art .ink{stroke:#d9bf7e;stroke-width:2.6;}
   .hero .art .inkf{fill:#d9bf7e;}
@@ -131,7 +131,7 @@
   .box p{margin:0;font-size:14px;color:var(--muted);}
   .box.wide{grid-column:1 / -1;}
 
-  /* Take-home window — the rule parents most need to absorb. */
+  /* Take-home window: the rule parents most need to absorb. */
   .window{
     display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:16px 0 0;
   }
@@ -148,7 +148,7 @@
   .day.yes .d{color:#d9bf7e;}
   .day.yes .s{color:#c9d0e3;}
 
-  /* Three-strike sequence. Numbered because the order genuinely matters —
+  /* Three-strike sequence. Numbered because the order genuinely matters:
      each step only happens after the one before it. */
   .steps{list-style:none;margin:16px 0 0;padding:0;counter-reset:step;}
   .steps li{counter-increment:step;display:flex;gap:15px;margin-bottom:16px;}
@@ -168,6 +168,12 @@
     padding:13px 16px;font-size:13.5px;color:#7a5c0f;margin:16px 0 0;
   }
   .callout b{color:#5c4409;}
+
+  .cta{
+    display:inline-block;background:var(--navy);color:#d9bf7e;
+    font-weight:700;font-size:14.5px;padding:13px 26px;
+    border-radius:8px;text-decoration:none;margin-top:16px;
+  }
 
   .contact{
     background:var(--panel);border:1px solid var(--panel-line);
@@ -206,6 +212,14 @@
       <div class="box"><h3>The instrument</h3><p>Provided. Your student uses a school ukulele in class and may take it home midweek. See the schedule below. <b>Bring it to class every Tuesday and Thursday.</b></p></div>
       <div class="box"><h3>The materials</h3><p>No book to buy. Everything students need is in a presentation used in class, and <b>I email that presentation and the practice material home</b>, so your student can work on the same thing at home.</p></div>
     </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Class Materials</p>
+    <h2>Practice at home with what we use in class</h2>
+    <p class="lead">Everything we work on in class lives in one Google Slides presentation. Your student can open it at home and practice the exact material we covered that day. Nothing to buy and nothing to print.</p>
+    <a class="cta" href="https://docs.google.com/presentation/d/15KmPYv-yEclopt8cTw1U2qBATOGkOLnvPhUQmAKij5g/preview">Open the class slides &rarr;</a>
+    <div class="callout" style="margin-top:20px;"><b>This presentation changes as we go.</b> I update it regularly, so open the link rather than saving a copy. A saved version goes stale. In general, what's in here is what we'll be learning up until the Christmas Concert.</div>
   </section>
 
   <section>

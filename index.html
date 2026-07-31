@@ -47,7 +47,7 @@
   .art .accf{fill:var(--gold);stroke:none;}
 
   /* A picture-first grid. The caption is a label for the drawing, not a
-     paragraph — if it needs a sentence it belongs in a .box instead. */
+     paragraph. If it needs a sentence it belongs in a .box instead. */
   .instgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px;}
   .inst{
     background:var(--panel);
@@ -60,7 +60,7 @@
   .inst .n{font-size:13.5px;font-weight:700;color:var(--navy);margin:0;line-height:1.3;}
   .inst .s{font-size:11.5px;color:var(--muted);margin:3px 0 0;line-height:1.35;}
   /* A short row of three, for the upper-school-only instruments. Needs its own
-     class rather than an inline grid-template — an inline style outranks the
+     class rather than an inline grid-template. An inline style outranks the
      media query below and would stay three-across on a phone. */
   .instgrid.three{grid-template-columns:repeat(3,1fr);max-width:430px;}
   @media (max-width:620px){
@@ -72,7 +72,7 @@
   .artbig{max-width:250px;margin:6px auto 0;}
 
   /* Hero art sits on navy, so it needs the light-on-dark treatment. Keep it
-     small — it is a mark above the headline, not a picture competing with it. */
+     small. It is a mark above the headline, not a picture competing with it. */
   .hero .art{max-width:74px;margin:0 auto 16px;}
   .hero .art .ink{stroke:#d9bf7e;stroke-width:2.6;}
   .hero .art .inkf{fill:#d9bf7e;}
