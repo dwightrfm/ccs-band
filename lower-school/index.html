@@ -71,13 +71,17 @@
   /* A single hero-sized drawing, for the ukulele page. */
   .artbig{max-width:250px;margin:6px auto 0;}
 
-  /* Hero art sits on navy, so it needs the light-on-dark treatment. Keep it
-     small. It is a mark above the headline, not a picture competing with it. */
-  .hero .art{max-width:74px;margin:0 auto 16px;}
-  .hero .art .ink{stroke:#d9bf7e;stroke-width:2.6;}
-  .hero .art .inkf{fill:#d9bf7e;}
-  .hero .art .acc{stroke:#8fa0c8;stroke-width:2.4;}
-  .hero .art .accf{fill:#8fa0c8;}
+  /* The Knights Instrumental Arts logo is the only mark in the hero. It carries
+     the school name itself, which is why the old crest and its caption are gone.
+     Width is capped so it stays a mark above the headline, not a picture
+     competing with it. */
+  .hero .crest{
+    display:block;width:100%;max-width:186px;height:auto;
+    margin:0 auto 20px;
+  }
+  @media (max-width:420px){
+    .hero .crest{max-width:150px;margin-bottom:16px;}
+  }
 </style>
 </head>
 <body>
@@ -437,13 +441,7 @@
 </style>
 
 <div class="hero">
-  <div class="logo">
-    <svg width="34" height="34" viewBox="0 0 86 86" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M43 8 L78 24 V44 C78 63 62 76 43 80 C24 76 8 63 8 44 V24 Z" stroke="#d9bf7e" stroke-width="4" fill="none"/>
-    </svg>
-    <p class="k1">Cary Christian School</p>
-  </div>
-  <svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse class="inkf" cx="34" cy="84" rx="15" ry="11" transform="rotate(-20 34 84)"/> <path class="ink" d="M48 82V26" stroke-width="5"/> <ellipse class="inkf" cx="80" cy="72" rx="15" ry="11" transform="rotate(-20 80 72)"/> <path class="ink" d="M94 70V14" stroke-width="5"/> <path class="ink" d="M48 27 94 15" stroke-width="11" stroke-linecap="butt"/></svg>
+  <img class="crest" src="../assets/instrumental-arts.png" width="480" height="541" alt="Cary Christian Knights Instrumental Arts" />
   <h1>Lower School Band 2026-2027</h1>
   <p>4th and 5th grade. Everything for the year in one place.</p>
 </div>
