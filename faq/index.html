@@ -97,9 +97,16 @@
   .nav .inner::-webkit-scrollbar{display:none;}
   .nav .home{
     display:flex;align-items:center;padding:0 12px 0 0;
-    color:#6f7d9c;text-decoration:none;font-size:15px;flex-shrink:0;
+    text-decoration:none;flex-shrink:0;
   }
-  .nav .home:hover{color:#d9bf7e;}
+  /* The instruments-and-drum mark without the wordmark: at nav size the type
+     would be unreadable. 28px is the floor where the horns still read. */
+  .nav .home img{
+    display:block;height:28px;width:auto;
+    opacity:.78;transition:opacity .15s;
+  }
+  .nav .home:hover img,
+  .nav .home:focus-visible img{opacity:1;}
   .nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;}
   .nav a.tab{
     display:block;padding:13px 14px;white-space:nowrap;
@@ -119,7 +126,7 @@
 </head>
 <body>
 
-<nav class="nav" aria-label="Band program pages"><div class="inner"><a class="home" href="../" aria-label="All band pages">&#9737;</a><ul><li><a class="tab" href="../lower-school/">Lower School</a></li><li><a class="tab" href="../upper-school/">Upper School</a></li><li><a class="tab" href="../ukulele/">Ukulele</a></li><li><a class="tab" href="../faq/" aria-current="page">FAQ</a></li><li><a class="tab" href="../events/">Events</a></li></ul></div></nav>
+<nav class="nav" aria-label="Band program pages"><div class="inner"><a class="home" href="../" aria-label="All band pages"><img src="../assets/instrumental-arts-mark.png" width="112" height="96" alt="" /></a><ul><li><a class="tab" href="../lower-school/">Lower School</a></li><li><a class="tab" href="../upper-school/">Upper School</a></li><li><a class="tab" href="../ukulele/">Ukulele</a></li><li><a class="tab" href="../faq/" aria-current="page">FAQ</a></li><li><a class="tab" href="../events/">Events</a></li></ul></div></nav>
 
 <div class="hero">
   <img class="crest" src="../assets/instrumental-arts.png" width="480" height="541" alt="Cary Christian Knights Instrumental Arts" />
