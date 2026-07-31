@@ -436,81 +436,69 @@
   @media (max-width:560px){ .grid2{grid-template-columns:1fr;} }
 </style>
 <style>
-  /* Scoped to this page so nothing here touches the other four. */
-  .tl{list-style:none;margin:0;padding:0;}
-  .tl li{
-    display:grid;
-    grid-template-columns:104px 1fr;
-    gap:18px;
-    padding:16px 0;
-    border-bottom:1px solid var(--line);
-    align-items:start;
+  /* Scoped to this page so nothing here touches the other five. */
+  .who{
+    display:flex;gap:10px;flex-wrap:wrap;margin:0 0 4px;
   }
-  .tl li:last-child{border-bottom:none;}
-  .tl .when{
-    margin:0;
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--gold-deep);
-    line-height:1.4;
-    padding-top:2px;
-  }
-  .tl .when span{display:block;color:var(--muted);font-weight:600;letter-spacing:.04em;}
-  .tl .what{margin:0;font-size:16px;font-weight:700;color:var(--navy);}
-  .tl .note{margin:4px 0 0;font-size:14px;color:var(--muted);}
-  @media (max-width:520px){
-    .tl li{grid-template-columns:1fr;gap:4px;}
-    .tl .when{padding-top:0;}
-    .tl .when span{display:inline;}
-  }
-
-  .meets{
-    background:var(--navy);
-    border-radius:10px;
-    padding:22px 24px;
-    color:#fff;
-    margin-top:6px;
-  }
-  .meets .h{
-    margin:0 0 12px;
-    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:#d9bf7e;font-weight:700;
-  }
-  .meets .days{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 12px;}
-  .meets .day{
-    background:rgba(217,191,126,.14);
-    border:1px solid rgba(217,191,126,.4);
-    border-radius:999px;
-    padding:8px 18px;
-    font-size:14.5px;font-weight:700;color:#d9bf7e;
-  }
-  .meets p{margin:0;font-size:14.5px;color:#c9d0e3;}
-
-  .concerts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;}
-  @media (max-width:600px){.concerts{grid-template-columns:1fr;}}
-  .cc{
+  .who a{
+    flex:1 1 220px;
+    display:block;
     background:var(--panel);
     border:1px solid var(--panel-line);
     border-left:4px solid var(--navy);
     border-radius:10px;
-    padding:20px 22px;
+    padding:16px 18px;
+    text-decoration:none;
   }
-  .cc .d{
+  .who a:hover{border-color:var(--gold);}
+  .who .t{margin:0 0 3px;font-size:15.5px;font-weight:800;color:var(--navy);}
+  .who .s{margin:0;font-size:13.5px;color:var(--muted);}
+
+  .schedblock{
+    border:1px solid var(--panel-line);
+    border-radius:12px;
+    overflow:hidden;
+    margin-top:8px;
+  }
+  .schedblock > .hd{
+    background:var(--navy);
+    padding:16px 20px;
+  }
+  .schedblock > .hd .k{
+    margin:0 0 3px;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:#d9bf7e;font-weight:700;
+  }
+  .schedblock > .hd h3{margin:0;font-size:18px;color:#fff;font-weight:800;}
+  .schedblock > .hd p{margin:5px 0 0;font-size:13.5px;color:#c9d0e3;}
+  .schedblock .bd{padding:4px 20px 18px;background:#fff;}
+
+  .ev{padding:16px 0;border-bottom:1px solid var(--line);}
+  .ev:last-child{border-bottom:none;}
+  .ev .d{
     margin:0 0 2px;
-    font-size:11px;letter-spacing:.13em;text-transform:uppercase;
-    color:var(--gold-deep);font-weight:700;
+    font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--gold-deep);font-weight:800;
   }
-  .cc h3{margin:0 0 12px;font-size:18px;color:var(--navy);}
-  .cc .row{
-    display:flex;justify-content:space-between;gap:12px;
-    font-size:14.5px;padding:6px 0;
-    border-top:1px solid var(--panel-line);
+  .ev h4{margin:0 0 9px;font-size:16.5px;color:var(--navy);font-weight:800;}
+  .ev .slots{margin:0;padding:0;list-style:none;}
+  .ev .slots li{
+    display:flex;justify-content:space-between;gap:14px;
+    font-size:14.5px;padding:6px 0;border-top:1px solid var(--line);
   }
-  .cc .row:first-of-type{border-top:none;}
-  .cc .row .k{color:var(--muted);}
-  .cc .row .v{color:var(--navy);font-weight:700;text-align:right;}
+  .ev .slots li:first-child{border-top:none;}
+  .ev .slots .g{color:var(--muted);}
+  .ev .slots .tm{color:var(--navy);font-weight:700;text-align:right;}
+  .ev .sub{margin:9px 0 0;font-size:13px;color:var(--muted);}
+
+  .meets{background:var(--navy);border-radius:10px;padding:22px 24px;color:#fff;margin-top:6px;}
+  .meets .h{margin:0 0 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#d9bf7e;font-weight:700;}
+  .meets .days{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 12px;}
+  .meets .day{
+    background:rgba(217,191,126,.14);border:1px solid rgba(217,191,126,.4);
+    border-radius:999px;padding:8px 18px;font-size:14.5px;font-weight:700;color:#d9bf7e;
+  }
+  .meets p{margin:0;font-size:14.5px;color:#c9d0e3;}
 </style>
 
 <div class="hero">
@@ -522,10 +510,26 @@
   </div>
   <svg class="art" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect class="ink" x="18" y="26" width="84" height="76" rx="8"/> <path class="ink" d="M18 48h84"/> <path class="ink" d="M38 26V14M82 26V14"/> <circle class="accf" cx="40" cy="66" r="5"/> <circle class="accf" cx="60" cy="66" r="5"/> <circle class="accf" cx="80" cy="66" r="5"/> <circle class="accf" cx="40" cy="84" r="5"/> <circle class="accf" cx="60" cy="84" r="5"/></svg>
   <h1>Dates &amp; Events 2026-2027</h1>
-  <p>Every date for band and ukulele, in one place. Put the two concerts on your calendar now.</p>
+  <p>Lower School and Upper School are on completely different concert calendars. Find your student's below.</p>
 </div>
 
 <div class="wrap">
+
+  <section>
+    <p class="eyebrow">Start here</p>
+    <h2>Which calendar is yours?</h2>
+    <p class="lead">These are two separate sets of concerts on different dates. Third grade ukulele performs alongside 4th and 5th grade band, so it is on the Lower School calendar.</p>
+    <div class="who">
+      <a href="#lower">
+        <p class="t">Lower School</p>
+        <p class="s">3rd grade ukulele, 4th and 5th grade band. Concerts are during the school day.</p>
+      </a>
+      <a href="#upper">
+        <p class="t">Upper School</p>
+        <p class="s">Middle and high school band. Concerts are Saturday afternoons in the Gym.</p>
+      </a>
+    </div>
+  </section>
 
   <section>
     <p class="eyebrow">When we meet</p>
@@ -537,71 +541,115 @@
         <span class="day">Tuesday</span>
         <span class="day">Thursday</span>
       </div>
-      <p>If your student forgets an instrument on a class day, that is a missed rehearsal, not a missed worksheet. There is no way to make it up at home.</p>
+      <p>A forgotten instrument on a class day is a missed rehearsal, not a missed worksheet. There is no way to make it up at home.</p>
+    </div>
+  </section>
+
+  <section id="lower">
+    <p class="eyebrow">Lower School</p>
+    <h2>3rd grade ukulele, 4th and 5th grade band</h2>
+    <p class="lead"><b>Both concerts happen during the school day</b>, so there is no evening to arrange. Each grade performs in its own time slot on the same day.</p>
+
+    <div class="schedblock">
+      <div class="hd">
+        <p class="k">Lower School calendar</p>
+        <h3>Two performances</h3>
+        <p>Daytime, on campus. Grandparents are invited to the April one.</p>
+      </div>
+      <div class="bd">
+
+        <div class="ev">
+          <p class="d">Wednesday, December 16, 2026</p>
+          <h4>Christmas Concert</h4>
+          <ul class="slots">
+            <li><span class="g">3rd Grade Ukulele</span><span class="tm">9:00 to 10:00 AM</span></li>
+            <li><span class="g">4th Grade Band</span><span class="tm">10:30 to 11:30 AM</span></li>
+            <li><span class="g">5th Grade Band</span><span class="tm">12:00 to 1:00 PM</span></li>
+          </ul>
+          <p class="sub">Rehearsal is <b>Monday, December 14</b>, during the school day. Your student only attends their own grade's slot.</p>
+        </div>
+
+        <div class="ev">
+          <p class="d">Friday, April 23, 2027</p>
+          <h4>Grandparents Day Concert</h4>
+          <ul class="slots">
+            <li><span class="g">Ukulele, 4th and 5th Grade Band</span><span class="tm">Time to be confirmed</span></li>
+          </ul>
+          <p class="sub">An early release day for Lower School. I will email the time as soon as it is set.</p>
+        </div>
+
+      </div>
+    </div>
+    <p class="lead" style="margin-top:14px;font-size:13.5px;">Ukulele students perform <b>three songs, all memorized</b>, with no sheet music on stage.</p>
+  </section>
+
+  <section id="upper">
+    <p class="eyebrow">Upper School</p>
+    <h2>Middle and high school band</h2>
+    <p class="lead"><b>Different dates from Lower School.</b> Both concerts are Saturday afternoons in the Gym, and both are combined middle and high school.</p>
+
+    <div class="schedblock">
+      <div class="hd">
+        <p class="k">Upper School calendar</p>
+        <h3>Two performances</h3>
+        <p>Saturday afternoons in the Gym. Put both on your calendar now.</p>
+      </div>
+      <div class="bd">
+
+        <div class="ev">
+          <p class="d">Saturday, December 12, 2026</p>
+          <h4>Christmas Concert</h4>
+          <ul class="slots">
+            <li><span class="g">Band</span><span class="tm">4:00 PM</span></li>
+            <li><span class="g">Choir</span><span class="tm">6:00 PM</span></li>
+            <li><span class="g">Where</span><span class="tm">Gym</span></li>
+          </ul>
+        </div>
+
+        <div class="ev">
+          <p class="d">Saturday, April 24, 2027</p>
+          <h4>Spring Concert</h4>
+          <ul class="slots">
+            <li><span class="g">Band</span><span class="tm">4:00 PM</span></li>
+            <li><span class="g">Where</span><span class="tm">Gym</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="box" style="margin-top:16px;">
+      <h3>Extra rehearsals: Middle School Band only</h3>
+      <p>There are <b>no after-school rehearsals</b>. Because both concerts are combined, in the weeks before each one the Middle School Band rehearses with the High School Band during the High School Band's regular class period. <b>Middle School students only.</b> High School students have no schedule change.</p>
     </div>
   </section>
 
   <section>
-    <p class="eyebrow">The whole year</p>
-    <h2>Every date at a glance</h2>
-    <p class="lead">Four dates matter. Two are in the first week, two are the concerts.</p>
-    <ul class="tl">
-      <li>
-        <p class="when">Aug 4 <span>Tuesday</span></p>
-        <div>
-          <p class="what">Meet the Teacher</p>
-          <p class="note">Come find the band room. Bring your questions about instrument rental, lessons, and the participation agreement.</p>
-        </div>
-      </li>
-      <li>
-        <p class="when">Aug 6 <span>Thursday</span></p>
-        <div>
-          <p class="what">First day of school</p>
-          <p class="note">A class day. Upper School band plays the first day.</p>
-        </div>
-      </li>
-      <li>
-        <p class="when">Dec 12 <span>Saturday</span></p>
-        <div>
-          <p class="what">Christmas Concert</p>
-          <p class="note">Band at 4:00 PM, Choir at 6:00 PM, both in the Gym.</p>
-        </div>
-      </li>
-      <li>
-        <p class="when">Apr 24 <span>Saturday</span></p>
-        <div>
-          <p class="what">Spring Concert</p>
-          <p class="note">4:00 PM in the Gym.</p>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <p class="eyebrow">Concerts</p>
-    <h2>Both concerts are required</h2>
-    <p class="lead">A concert is the whole point of a rehearsal. Missing one is not the same as missing a class. Both fall on a Saturday, so there is no school-day conflict to work around.</p>
-    <div class="concerts">
-      <div class="cc">
-        <p class="d">Saturday, December 12, 2026</p>
-        <h3>Christmas Concert</h3>
-        <div class="row"><span class="k">Band</span><span class="v">4:00 PM</span></div>
-        <div class="row"><span class="k">Choir</span><span class="v">6:00 PM</span></div>
-        <div class="row"><span class="k">Where</span><span class="v">Gym</span></div>
+    <p class="eyebrow">First week</p>
+    <h2>August 2026</h2>
+    <div class="schedblock">
+      <div class="hd">
+        <p class="k">Everyone</p>
+        <h3>Getting started</h3>
       </div>
-      <div class="cc">
-        <p class="d">Saturday, April 24, 2027</p>
-        <h3>Spring Concert</h3>
-        <div class="row"><span class="k">Start</span><span class="v">4:00 PM</span></div>
-        <div class="row"><span class="k">Where</span><span class="v">Gym</span></div>
+      <div class="bd">
+        <div class="ev">
+          <p class="d">Tuesday, August 4, 2026</p>
+          <h4>Meet the Teacher</h4>
+          <p class="sub">Come find the band room. Bring questions about instrument rental, lessons, and the participation agreement.</p>
+        </div>
+        <div class="ev">
+          <p class="d">Thursday, August 6, 2026</p>
+          <h4>First day of school</h4>
+          <p class="sub">A class day. Upper School band plays the first day.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section>
     <p class="eyebrow">Questions</p>
-    <h2>Call times and dress</h2>
-    <p class="lead">Call time, what to wear, and where to park go out through Veracross two weeks before each concert, and again the week of. If you have not seen it by then, email me and I will send it directly.</p>
+    <h2>Call times and what to wear</h2>
+    <p class="lead">Both go out through Veracross two weeks before each concert, and again the week of. If you have not seen it by then, email me and I will send it directly.</p>
     <div class="box">
       <h3>Mr. Dillon-Seminario</h3>
       <p><a href="mailto:ddillon@carychristianschool.org" style="color:var(--gold-deep);font-weight:600;">ddillon@carychristianschool.org</a></p>

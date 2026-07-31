@@ -685,7 +685,7 @@
     var FREQS = [
       { id: 'weekly', label: 'Weekly', per: 4, note: 'recommended' },
       { id: 'biweekly', label: 'Every other week', per: 2 },
-      { id: 'none', label: 'None yet', per: 0 }
+      { id: 'none', label: 'Not arranged yet', per: 0 }
     ];
 
     var state = { inst: 'trumpet', rate: 25, freq: 'weekly', setup: 'sticks' };
@@ -761,7 +761,7 @@
           v: money(lessons) + '/mo'
         });
       } else {
-        rows.push({ k: 'Private lessons', sub: 'none scheduled yet', v: '$0', muted: true });
+        rows.push({ k: 'Private lessons', sub: 'required, not arranged yet', v: 'not counted', muted: true });
       }
 
       if (rental > 0) {
@@ -815,11 +815,10 @@
           'lesson frequency is the lever, not the rental.';
       } else if (freq.per > 0) {
         $('callout').innerHTML = 'There is no rental for this one, so lessons are the entire monthly cost. ' +
-          'Students who already read music sometimes start without weekly lessons. Set it to ' +
-          '<b>None yet</b> to see that.';
+          'Lessons are required, so plan on this number rather than the rental line.';
       } else {
-        $('callout').innerHTML = 'No lessons scheduled means no recurring lesson cost, but progress ' +
-          'depends far more on the <b>3x a week practice standard</b> above than on lessons.';
+        $('callout').innerHTML = '<b>Lessons are required</b>, so this number is not final. ' +
+          'Set a frequency above to see your real monthly cost before you sign.';
       }
     }
 
