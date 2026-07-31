@@ -205,7 +205,7 @@
     text-decoration:none;
     margin-top:6px;
   }
-  /* Applied automatically when no signing URL is set yet — the button must
+  /* Applied automatically when no signing URL is set yet. The button must
      never look live and then do nothing when a parent taps it. */
   .cta-off{
     background:#e8e8ee;
@@ -364,7 +364,7 @@
     font-variant-numeric:tabular-nums;
     white-space:nowrap;
   }
-  /* One-time rows sit behind the recurring ones. Keep the weight at normal —
+  /* One-time rows sit behind the recurring ones. Keep the weight at normal,
      bolding a de-emphasized row makes it read as the most important line. */
   #investment .line.muted .k{color:var(--muted);font-weight:400;}
   #investment .line.muted .v{color:var(--muted);font-weight:600;}
@@ -489,7 +489,7 @@
     <p class="eyebrow" style="margin-top:30px;">The Book</p>
     <h2>Provided, and yours to buy if you'd rather</h2>
     <p class="lead">4th and 5th grade use <b>Essential Elements for Band, Book 1</b>. <b>A book is provided for every student</b>, so there is nothing you have to purchase.</p>
-    <div class="box"><h3>Buying your own is optional</h3><p>Some families prefer their student have a copy that stays home and can be written in. If that's you, it's about $15 from Amazon or any music retailer. Get the edition for your student's <b>specific instrument</b> — a trumpet book won't work for a clarinet.</p></div>
+    <div class="box"><h3>Buying your own is optional</h3><p>Some families prefer their student have a copy that stays home and can be written in. If that's you, it's about $15 from Amazon or any music retailer. Get the edition for your student's <b>specific instrument</b>. A trumpet book won't work for a clarinet.</p></div>
   </section>
 
   <section>
@@ -643,11 +643,11 @@
   (function () {
     /* Rental figures are Joyful Noise's confirmed 2026-07-16 pricing.
        Bass guitar and bells are NOT rentable through them, so those families
-       buy once instead — hence `buy` rather than `rent`. Equipment prices are
+       buy once instead, hence `buy` rather than `rent`. Equipment prices are
        entry-level Amazon listings checked 2026-07-28. */
     /* The school provides the book, so it is NOT a cost in this calculator.
        Families may buy their own copy (~$15) but that is optional and stays
-       out of the totals — see the Book section above. */
+       out of the totals. See the Book section above. */
     var MONTHS = 9;
     /* Lower school lessons run 30 minutes at this age, so a lesson costs half
        the hourly rate. Middle and high school run 45-60 min at the same rate. */
@@ -662,7 +662,7 @@
       { id: 'bass',     label: 'Bass Guitar', rent: 0, buy: 118, buyLabel: 'Starter bass and amp' },
       { id: 'bells',    label: 'Bells',       rent: 0, buy: 95,  buyLabel: '32-note bell kit' },
       /* Percussionists play the school's drums. Sticks are the only hard
-         requirement — the pad and snare kit are for practicing at home, which
+         requirement. The pad and snare kit are for practicing at home, which
          is what actually moves a percussionist forward. */
       { id: 'drums',    label: 'Drums',       rent: 0, setups: [
         { id: 'sticks', label: 'Sticks only',   cost: 13, line: 'Snare sticks',
@@ -670,7 +670,7 @@
         { id: 'pad',    label: 'Practice pad',  cost: 30, line: 'Practice pad, stand and sticks',
           hint: 'Quiet enough for a bedroom, and the best value of the three for building technique.' },
         { id: 'snare',  label: 'Snare kit',     cost: 69, line: 'Snare drum, stand, bag, pad and sticks',
-          hint: 'A real drum to practice on at home. Loud — the included mute pad helps.' }
+          hint: 'A real drum to practice on at home. Loud, but the included mute pad helps.' }
       ] }
     ];
 
@@ -759,12 +759,12 @@
       if (rental > 0) {
         rows.push({ k: 'Instrument rental', sub: 'Joyful Noise, month to month', v: money(rental) + '/mo' });
       } else if (setup) {
-        rows.push({ k: 'Drums', sub: 'provided by the school — nothing to rent', v: '$0', muted: true });
+        rows.push({ k: 'Drums', sub: 'provided by the school, nothing to rent', v: '$0', muted: true });
         rows.push({ k: equipLine, sub: 'one time', v: money(equip), muted: true });
       } else {
         rows.push({
           k: 'Instrument',
-          sub: equipLine + ' — bought once, not rented',
+          sub: equipLine + ', bought once, not rented',
           v: money(equip), muted: true
         });
       }
@@ -780,7 +780,7 @@
       $('mo').textContent = money(monthly);
       $('moCap').textContent = rental > 0
         ? (freq.per > 0 ? 'Lessons plus rental' : 'Rental only')
-        : (freq.per > 0 ? 'Lessons only — nothing to rent' : 'No recurring cost');
+        : (freq.per > 0 ? 'Lessons only, nothing to rent' : 'No recurring cost');
       $('yr').textContent = money(year);
 
       /* Set display directly rather than the [hidden] attribute: the
@@ -797,20 +797,20 @@
 
       var pct = monthly > 0 ? Math.round((lessons / monthly) * 100) : 0;
       if (setup) {
-        $('callout').innerHTML = 'Drums are the cheapest instrument to start — the school owns them, ' +
+        $('callout').innerHTML = 'Drums are the cheapest instrument to start. The school owns them, ' +
           'so there is <b>no rental at all</b>. Sticks are the only requirement. ' +
           'A pad or snare at home is optional, but percussionists who practice on one progress ' +
           'much faster than those who only play in class.';
       } else if (freq.per > 0 && rental > 0) {
         $('callout').innerHTML = 'Lessons are <b>' + pct + '%</b> of that monthly number. ' +
-          'The instrument itself is ' + money(rental) + ' a month — so if the total looks steep, ' +
+          'The instrument itself is ' + money(rental) + ' a month, so if the total looks steep, ' +
           'lesson frequency is the lever, not the rental.';
       } else if (freq.per > 0) {
         $('callout').innerHTML = 'There is no rental for this one, so lessons are the entire monthly cost. ' +
-          'Students who already read music sometimes start without weekly lessons — set it to ' +
+          'Students who already read music sometimes start without weekly lessons. Set it to ' +
           '<b>None yet</b> to see that.';
       } else {
-        $('callout').innerHTML = 'No lessons scheduled means no recurring lesson cost — but progress ' +
+        $('callout').innerHTML = 'No lessons scheduled means no recurring lesson cost, but progress ' +
           'depends far more on the <b>3x a week practice standard</b> above than on lessons.';
       }
     }
