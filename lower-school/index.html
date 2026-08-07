@@ -143,6 +143,11 @@
 
   .wrap{max-width:760px;margin:0 auto;padding:0 24px 90px;}
   section{padding:44px 0;border-bottom:1px solid var(--line);}
+  ul.plain{list-style:none;margin:6px 0 0;padding:0;}
+  ul.plain li{padding:9px 0 9px 22px;position:relative;font-size:15px;border-bottom:1px solid var(--line);}
+  ul.plain li:last-child{border-bottom:0;}
+  ul.plain li::before{content:"";position:absolute;left:2px;top:18px;width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  ul.plain li b{color:var(--navy);}
   section:last-of-type{border-bottom:none;}
 
   h2{
@@ -558,6 +563,42 @@
     <div class="todo"><b>MakeMusic Cloud is completely optional.</b> Many families have thoughtful policies around screen time, and I respect that. Your student is at no disadvantage either way, and the practice standard is the same for everyone.</div>
   </section>
 
+  <section>
+    <p class="eyebrow">How Band Is Graded</p>
+    <h2>Half the grade is showing up ready. Half is practicing.</h2>
+    <p class="lead">There are no surprises in a band grade and no judgment about talent. Your student is graded on two things they fully control, and both are already being tracked, so nothing here asks anything new of you.</p>
+
+    <div class="grid2">
+      <div class="box"><h3>50% &mdash; Ready for class</h3><p>Three things, every class: <b>on time</b>, <b>instrument in hand</b>, <b>book in hand</b>. One point each. Band meets Tuesday and Thursday, so that is 8 classes and 24 points in a grading cycle.</p></div>
+      <div class="box"><h3>50% &mdash; Practice</h3><p>Three sessions a week, 30 minutes each, the standard in the agreement you signed. Over a four-week cycle that is 12 sessions, logged automatically in MakeMusic Cloud or by hand on the weekly form.</p></div>
+    </div>
+
+    <div class="todo"><b>Why half and half.</b> A student who never misses a class but never opens the case at home earns exactly half the points. A student who practices faithfully but leaves the instrument at home earns the same. Neither half can carry the grade, and that is deliberate. Band is the one subject where the work between classes <em>is</em> the subject.</div>
+
+    <p class="eyebrow" style="margin-top:30px;">What Lands On The Report Card</p>
+    <p class="lead">4th and 5th grade band is <b>not</b> a letter grade. It stays an <b>S / U / E</b> mark, exactly as it has been. The points above are what decide which mark your student earns.</p>
+    <div class="grid2">
+      <div class="box"><h3>S &mdash; the normal mark</h3><p>Putting in the effort and practicing. This is most of the class, and it is a good mark, not a warning.</p></div>
+      <div class="box"><h3>E &mdash; going beyond</h3><p>Consistently prepared and practicing well past the minimum, cycle after cycle.</p></div>
+    </div>
+    <div class="box" style="margin-top:16px;"><h3>U &mdash; not yet</h3><p>Reserved for a student who is regularly unprepared and not practicing. You will have heard from me well before this ever appears on a report card.</p></div>
+
+    <p class="eyebrow" style="margin-top:30px;">The Grading Cycle</p>
+    <p class="lead">Marks are figured <b>every four weeks</b>, two per quarter, so the first reads like a midterm and the second like a final. You will never be surprised in October by something that started going wrong in August.</p>
+
+    <p class="eyebrow" style="margin-top:30px;">Life Happens</p>
+    <p class="lead">These are written down on purpose, so you never have to wonder and I never have to decide in the moment.</p>
+    <ul class="plain">
+      <li><b>Excused absence.</b> Those points come out of the total, not off the grade. Missing class for a real reason cannot hurt your student.</li>
+      <li><b>Instrument in the shop.</b> Let me know ahead of time and both preparedness and practice are excused for those days.</li>
+      <li><b>Borrowing a classmate's book</b> counts as not having one. The habit is what is being graded, not the object.</li>
+      <li><b>MakeMusic is down.</b> A handwritten log is accepted that week, no penalty.</li>
+      <li><b>Joining band mid-cycle.</b> Grading starts at your student's first class, not before it.</li>
+      <li><b>Two unprepared days in a row</b> gets you a note from me in Veracross the same day. <b>Three in a row</b> and I call you. I would rather have one real conversation than send you three notices.</li>
+    </ul>
+    <div class="todo"><b>You will hear from me early, not late.</b> Every one of these numbers is visible to me the day it happens, which means you find out while there is still time to fix it.</div>
+  </section>
+
   <section id="investment">
     <p class="eyebrow">What It Costs</p>
     <h2>Your monthly investment</h2>
@@ -632,7 +673,7 @@
       <dt>How do I reach Mr. Dillon-Seminario?</dt>
       <dd>Email below. Every message gets a reply within 24 hours.</dd>
       <dt>How is band graded?</dt>
-      <dd>4th and 5th grade band isn't a letter grade. It's an S / U / E mark. A student earns an S by putting in the effort and practicing, which is most of the class. An E is for going clearly beyond that. An S is a good mark, not a warning.</dd>
+      <dd>4th and 5th grade band isn't a letter grade. It's an S / U / E mark, and the mark is built from two things: being ready for class (on time, instrument, book) and practicing 3x a week. Half and half. An S means putting in the effort and practicing, which is most of the class. An E is for going clearly beyond that. Marks are figured every four weeks. See <a href="#" onclick="document.querySelectorAll('.eyebrow').forEach(function(e){if(e.textContent.trim()==='How Band Is Graded')e.scrollIntoView({behavior:'smooth'})});return false;" style="color:var(--gold-deep);font-weight:600;">How Band Is Graded</a> above for the full breakdown.</dd>
       <dt>Where do I see grades and updates?</dt>
       <dd>Grades in Veracross. A monthly letter also goes out to parents with what's happening in band.</dd>
     </dl>

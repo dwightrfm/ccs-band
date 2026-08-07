@@ -143,6 +143,11 @@
 
   .wrap{max-width:760px;margin:0 auto;padding:0 24px 90px;}
   section{padding:44px 0;border-bottom:1px solid var(--line);}
+  ul.plain{list-style:none;margin:6px 0 0;padding:0;}
+  ul.plain li{padding:9px 0 9px 22px;position:relative;font-size:15px;border-bottom:1px solid var(--line);}
+  ul.plain li:last-child{border-bottom:0;}
+  ul.plain li::before{content:"";position:absolute;left:2px;top:18px;width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  ul.plain li b{color:var(--navy);}
   section:last-of-type{border-bottom:none;}
 
   h2{
@@ -574,13 +579,32 @@
 
   <section>
     <p class="eyebrow">Grading</p>
-    <h2>A letter grade every quarter</h2>
-    <p class="lead">Unlike 4th and 5th grade band, Upper School band earns a <b>letter grade at every quarter</b>. Three things go into it: participation, a playing quiz if I choose to give one that quarter, and a grade for their performance.</p>
+    <h2>Half the grade is showing up ready. Half is practicing.</h2>
+    <p class="lead">Upper School band earns a <b>letter grade</b>, and it is built from two things your student fully controls. Both are already being tracked, so nothing here asks anything new of you.</p>
+
     <div class="grid2">
-      <div class="box"><h3>What participation means</h3><p>Showing up on time, regularly, with the instrument and the book, and clearly prepared. I can tell when a student has been practicing their music.</p></div>
-      <div class="box"><h3>How it lands</h3><p>A student who shows up prepared and engaged earns an A. Not prepared, or not engaged, and it's a B. Real slacking off can reach a C, but that's rare.</p></div>
+      <div class="box"><h3>50% &mdash; Ready for class</h3><p>Three things, every class: <b>on time</b>, <b>instrument in hand</b>, <b>book in hand</b>. One point each. Band meets Tuesday and Thursday, so that is 8 classes and 24 points in a grading cycle.</p></div>
+      <div class="box"><h3>50% &mdash; Practice</h3><p>Three sessions a week, 30 minutes each, the standard in the agreement you signed. Over a four-week cycle that is 12 sessions, logged in MakeMusic Cloud or by hand on the weekly form.</p></div>
     </div>
-    <div class="box" style="margin-top:16px;"><h3>Where to see it</h3><p>Veracross, alongside your student's other classes, updated each quarter. A monthly letter also goes out to parents with what we're working on.</p></div>
+
+    <div class="todo"><b>Why half and half.</b> A student who never misses a class but never opens the case at home earns exactly 50. A student who practices faithfully but leaves the instrument at home earns the same. Neither half can carry the grade, and that is deliberate. Band is the one subject where the work between classes <em>is</em> the subject.</div>
+
+    <p class="eyebrow" style="margin-top:30px;">The Grading Cycle</p>
+    <p class="lead">Grades post <b>every four weeks</b>, two per quarter, so the first reads like a midterm and the second like a final. You will never be surprised in October by something that started going wrong in August.</p>
+    <p class="lead" style="font-size:14.5px;">90 and above is an A &middot; 80 to 89 a B &middot; 70 to 79 a C &middot; 60 to 69 a D &middot; below 60 an F. Practicing more than 12 times does not add points, but it protects you against a week that gets away from you.</p>
+
+    <p class="eyebrow" style="margin-top:30px;">Life Happens</p>
+    <p class="lead">These are written down on purpose, so you never have to wonder and I never have to decide in the moment.</p>
+    <ul class="plain">
+      <li><b>Excused absence.</b> Those points come out of the total, not off the grade. Missing class for a real reason cannot hurt your student.</li>
+      <li><b>Instrument in the shop.</b> Let me know ahead of time and both preparedness and practice are excused for those days.</li>
+      <li><b>Borrowing a classmate's book</b> counts as not having one. The habit is what is being graded, not the object.</li>
+      <li><b>MakeMusic is down.</b> A handwritten log is accepted that week, no penalty.</li>
+      <li><b>Joining band mid-cycle.</b> Grading starts at your student's first class, not before it.</li>
+      <li><b>Two unprepared days in a row</b> gets you a note from me in Veracross the same day. <b>Three in a row</b> and I call you. I would rather have one real conversation than send you three notices.</li>
+    </ul>
+
+    <div class="box" style="margin-top:16px;"><h3>Where to see it</h3><p>Veracross, alongside your student's other classes, updated every four weeks. A monthly letter also goes out to parents with what we're working on.</p></div>
   </section>
 
   <section>
