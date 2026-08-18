@@ -279,10 +279,43 @@
     margin-top:11px;padding-top:10px;border-top:1px solid var(--line);
   }
 
-  /* The practice-log link stays hidden until the form URL is set, so it can
-     never render as a live link that goes nowhere. */
-  .practice-log-link{display:none;}
-  .practice-log-soon{font-size:13px;color:var(--muted);font-style:italic;}
+  /* ---- Practice log call to action -----------------------------------
+     The form link used to be body-size gold text buried at the bottom of
+     the Option 2 box, and parents scrolled straight past it. Whole panel
+     is the link so the tap target is the full block, not four words. */
+  .plog{
+    display:block;
+    margin:20px 0 0;
+    padding:24px 26px;
+    background:var(--navy);
+    border:2px solid var(--gold);
+    border-radius:12px;
+    text-align:center;
+    text-decoration:none;
+  }
+  .plog-eyebrow{
+    display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:#d9bf7e;font-weight:700;margin:0 0 10px;
+  }
+  .plog-h{
+    display:block;font-size:24px;line-height:1.25;font-weight:700;
+    color:#fff;margin:0 0 9px;
+  }
+  .plog-sub{
+    display:block;font-size:14.5px;line-height:1.5;
+    color:#c6cee2;margin:0 auto 20px;max-width:34em;
+  }
+  .plog-btn{
+    display:inline-block;background:#d9bf7e;color:var(--navy);
+    font-size:18px;font-weight:700;line-height:1;
+    padding:16px 32px;border-radius:8px;
+  }
+  .plog:hover .plog-btn{background:#e8d29a;}
+  @media (max-width:560px){
+    .plog{padding:22px 16px;}
+    .plog-h{font-size:20px;}
+    .plog-btn{display:block;font-size:17px;padding:17px 12px;}
+  }
 
   /* ---- Investment calculator ------------------------------------------
      Scoped under #investment so nothing here collides with the .box /

@@ -279,10 +279,43 @@
     margin-top:11px;padding-top:10px;border-top:1px solid var(--line);
   }
 
-  /* The practice-log link stays hidden until the form URL is set, so it can
-     never render as a live link that goes nowhere. */
-  .practice-log-link{display:none;}
-  .practice-log-soon{font-size:13px;color:var(--muted);font-style:italic;}
+  /* ---- Practice log call to action -----------------------------------
+     The form link used to be body-size gold text buried at the bottom of
+     the Option 2 box, and parents scrolled straight past it. Whole panel
+     is the link so the tap target is the full block, not four words. */
+  .plog{
+    display:block;
+    margin:20px 0 0;
+    padding:24px 26px;
+    background:var(--navy);
+    border:2px solid var(--gold);
+    border-radius:12px;
+    text-align:center;
+    text-decoration:none;
+  }
+  .plog-eyebrow{
+    display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:#d9bf7e;font-weight:700;margin:0 0 10px;
+  }
+  .plog-h{
+    display:block;font-size:24px;line-height:1.25;font-weight:700;
+    color:#fff;margin:0 0 9px;
+  }
+  .plog-sub{
+    display:block;font-size:14.5px;line-height:1.5;
+    color:#c6cee2;margin:0 auto 20px;max-width:34em;
+  }
+  .plog-btn{
+    display:inline-block;background:#d9bf7e;color:var(--navy);
+    font-size:18px;font-weight:700;line-height:1;
+    padding:16px 32px;border-radius:8px;
+  }
+  .plog:hover .plog-btn{background:#e8d29a;}
+  @media (max-width:560px){
+    .plog{padding:22px 16px;}
+    .plog-h{font-size:20px;}
+    .plog-btn{display:block;font-size:17px;padding:17px 12px;}
+  }
 
   /* ---- Investment calculator ------------------------------------------
      Scoped under #investment so nothing here collides with the .box /
@@ -570,7 +603,13 @@
       <div class="box"><h3>High School Band</h3><p>Class code <b>CVZDU-ZYZF7</b><br /><a href="https://admin.makemusic.com/join?classCode=CVZDU-ZYZF7" style="color:var(--gold-deep);font-weight:600;">Join High School Band on MakeMusic Cloud →</a></p></div>
     </div>
     <p class="lead" style="margin-top:14px;font-size:13px;">If 10+ days pass with nothing logged, you'll get a short, direct email. Not a warning, just a nudge.</p>
-    <div class="todo"><b>If MakeMusic truly will not work for your family</b>, there is a <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=IJZLb5rndkCy_RA1co732cz753YTgd1HhdEcwlQObXBUM0xNUFpZMjBQSFcxNE1INUdCUkhVUklJSi4u" style="color:#5c4409;font-weight:700;">weekly practice log form</a> you can fill out by hand instead. I would rather you didn't. It is more work for you, it gives your student no feedback on what they played, and at this level the app is doing real teaching between our rehearsals. Use it only if you have to.</div>
+    <a class="plog" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=IJZLb5rndkCy_RA1co732cz753YTgd1HhdEcwlQObXBUM0xNUFpZMjBQSFcxNE1INUdCUkhVUklJSi4u">
+      <span class="plog-eyebrow">Weekly practice log</span>
+      <span class="plog-h">Practicing music that is not in MakeMusic Cloud? Click here.</span>
+      <span class="plog-sub">Ensemble parts, method book, private lesson assignments, audition or all-district music. MakeMusic logs itself, but anything played outside the app only counts when you log it here. Once a week, about two minutes.</span>
+      <span class="plog-btn">Open the Weekly Practice Log &rarr;</span>
+    </a>
+    <div class="todo"><b>Use MakeMusic Cloud when you can.</b> It logs on its own, and it gives your student feedback on what they actually played. Use the form for the music that lives outside the app, or for the whole week if MakeMusic will not work for your family.</div>
   </section>
 
   <section>
