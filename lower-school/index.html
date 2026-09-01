@@ -103,6 +103,10 @@
     --ink:#20263a;
     --muted:#5b6178;
     --line:#e2e1e8;
+    /* Built-in CSS easings are too weak to read at 120ms. This is the strong
+       ease-out used for every press state on the site. */
+    --ease-out:cubic-bezier(.23,1,.32,1);
+    --press:120ms;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -111,7 +115,11 @@
     color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
     line-height:1.55;
+    font-optical-sizing:auto;
   }
+  /* In-page jumps glide instead of teleporting, so a parent keeps their place.
+     Turned off under reduced motion at the bottom of this sheet. */
+  html{scroll-behavior:smooth;}
   .hero{
     background:var(--navy);
     color:#fff;
@@ -133,6 +141,10 @@
     color:#d9bf7e;
     margin:0 0 12px;
     text-wrap:balance;
+    /* Tracking is size-specific. Letters read too far apart as type grows, so
+       display text gets negative tracking and tighter leading. Body stays at 0. */
+    letter-spacing:-.02em;
+    line-height:1.08;
   }
   .hero p{
     max-width:520px;
@@ -160,6 +172,8 @@
     font-weight:800;
     color:var(--navy);
     margin:0 0 6px;
+    letter-spacing:-.011em;
+    line-height:1.3;
   }
   .eyebrow{
     font-size:11px;
@@ -169,7 +183,7 @@
     font-weight:700;
     margin:0 0 8px;
   }
-  p.lead{color:var(--muted);font-size:15.5px;margin:0 0 18px;max-width:60ch;}
+  p.lead{color:var(--muted);font-size:15.5px;margin:0 0 18px;max-width:60ch;text-wrap:pretty;}
 
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;}
   .box{
@@ -299,7 +313,7 @@
   }
   .plog-h{
     display:block;font-size:24px;line-height:1.25;font-weight:700;
-    color:#fff;margin:0 0 9px;
+    color:#fff;margin:0 0 9px;letter-spacing:-.015em;
   }
   .plog-sub{
     display:block;font-size:14.5px;line-height:1.5;
@@ -310,7 +324,6 @@
     font-size:18px;font-weight:700;line-height:1;
     padding:16px 32px;border-radius:8px;
   }
-  .plog:hover .plog-btn{background:#e8d29a;}
   @media (max-width:560px){
     .plog{padding:22px 16px;}
     .plog-h{font-size:20px;}
@@ -332,7 +345,6 @@
     border-radius:7px;
     text-decoration:none;
   }
-  .paperlog:hover{border-left-color:var(--gold-deep);}
   .paperlog .pl-h{
     display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin:0 0 5px;
   }
@@ -388,7 +400,6 @@
     padding:8px 15px;
     cursor:pointer;
   }
-  #investment .pill:hover{border-color:var(--gold);}
   #investment .pill[aria-checked="true"]{
     background:var(--navy);
     border-color:var(--navy);
@@ -469,7 +480,9 @@
     font-weight:800;
     color:var(--navy);
     margin:0;
-    letter-spacing:-.5px;
+    /* Relative, not -.5px: this drops to 24px on mobile and a fixed pixel
+       tracking would be wrong at one of the two sizes. */
+    letter-spacing:-.02em;
     font-variant-numeric:tabular-nums;
   }
   #investment .tot.lead-tot .num{color:#d9bf7e;}
@@ -510,6 +523,54 @@
     text-align:center;
   }
   .contact a{color:var(--gold-deep);font-weight:600;text-decoration:none;}
+
+  /* ---- Press feedback -------------------------------------------------
+     The first rule of a touch interface: respond on pointer-down, not on
+     release. Every tappable thing on this page used to sit dead from the
+     moment a parent's finger landed until the next page loaded, which on a
+     slow phone is long enough to tap twice. These are transform and
+     background only, both of which stay on the GPU, and all are under 300ms.
+
+     Nothing else on this page animates, deliberately. Content a parent is
+     reading does not slide, fade, or reveal on scroll, and the calculator
+     numbers change instantly because they are data being read, not an
+     effect. The slider already updates 1:1 with the finger, which is the
+     behavior these rules are protecting. */
+  .plog,.paperlog,.cta,#investment .pill{
+    -webkit-tap-highlight-color:transparent;
+    transition:transform var(--press) var(--ease-out),
+               background-color var(--press) ease,
+               border-color var(--press) ease;
+  }
+  .plog-btn{transition:background-color var(--press) ease;}
+  /* Scale is inverse to the element's size: the same 3% on a full-width panel
+     reads as a lurch, on a pill it is invisible. */
+  .plog:active{transform:scale(.985);}
+  .cta:active{transform:scale(.97);}
+  .paperlog:active{transform:scale(.995);}
+  #investment .pill:active{transform:scale(.96);}
+  /* The disabled state must not feel pressable. */
+  .cta-off,.cta-off:active{transform:none;}
+
+  /* Hover is a false positive on a phone: the tap fires it and it sticks
+     until the parent taps somewhere else. Gate it behind a real pointer. */
+  @media (hover:hover) and (pointer:fine){
+    .plog:hover .plog-btn{background:#e8d29a;}
+    .paperlog:hover{border-left-color:var(--gold-deep);}
+    #investment .pill:hover{border-color:var(--gold);}
+  }
+
+  .plog:focus-visible,.paperlog:focus-visible,.cta:focus-visible{
+    outline:2px solid var(--gold-deep);
+    outline-offset:3px;
+  }
+
+  /* Reduced motion means gentler, not none. The color feedback stays, because
+     it is what tells a parent the tap registered. Only movement goes. */
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .plog:active,.cta:active,.paperlog:active,#investment .pill:active{transform:none;}
+  }
 
   @media (max-width:560px){ .grid2{grid-template-columns:1fr;} }
 </style>
@@ -658,7 +719,7 @@
     <div class="todo"><b>MakeMusic Cloud is completely optional.</b> Many families have thoughtful policies around screen time, and I respect that. Either digital option works and your student is at no disadvantage, because the practice standard is the same for everyone.</div>
   </section>
 
-  <section>
+  <section id="grading">
     <p class="eyebrow">How Band Is Graded</p>
     <h2>Half the grade is showing up ready. Half is practicing.</h2>
     <p class="lead">There are no surprises in a band grade and no judgment about talent. Your student is graded on two things they fully control, and both are already being tracked, so nothing here asks anything new of you.</p>
@@ -774,7 +835,7 @@
       <dt>How do I reach Mr. Dillon-Seminario?</dt>
       <dd>Email below. Every message gets a reply within 24 hours.</dd>
       <dt>How is band graded?</dt>
-      <dd>4th and 5th grade band isn't a letter grade. It's an S / U / E mark, and the mark is built from two things: being ready for class (on time, instrument, book) and practicing 90 minutes a week. Half and half. An S means putting in the effort and practicing, which is most of the class. An E is for going clearly beyond that. Marks are figured every four weeks. See <a href="#" onclick="document.querySelectorAll('.eyebrow').forEach(function(e){if(e.textContent.trim()==='How Band Is Graded')e.scrollIntoView({behavior:'smooth'})});return false;" style="color:var(--gold-deep);font-weight:600;">How Band Is Graded</a> above for the full breakdown.</dd>
+      <dd>4th and 5th grade band isn't a letter grade. It's an S / U / E mark, and the mark is built from two things: being ready for class (on time, instrument, book) and practicing 90 minutes a week. Half and half. An S means putting in the effort and practicing, which is most of the class. An E is for going clearly beyond that. Marks are figured every four weeks. See <a href="#grading" style="color:var(--gold-deep);font-weight:600;">How Band Is Graded</a> above for the full breakdown.</dd>
       <dt>Where do I see grades and updates?</dt>
       <dd>Grades in Veracross. A monthly letter also goes out to parents with what's happening in band.</dd>
     </dl>
