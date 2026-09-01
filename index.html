@@ -8,7 +8,25 @@
 <meta name="description" content="Cary Christian School band and ukulele information for families, 2026-2027.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#127930;</text></svg>">
 <style>
-  .nav{background:#0a1428;border-bottom:1px solid rgba(217,191,126,.22);}
+  /* Translucent chrome that content scrolls under, rather than an opaque strip
+     that scrolls away. The hairline is a shadow, not a border, so it reads as
+     the edge of a material catching light instead of a drawn rule. Fallbacks
+     below for browsers without backdrop-filter and for reduced transparency. */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,15,32,.86);
+    -webkit-backdrop-filter:blur(20px) saturate(180%);
+    backdrop-filter:blur(20px) saturate(180%);
+    box-shadow:0 1px 0 rgba(217,191,126,.20), 0 6px 20px rgba(11,23,48,.18);
+  }
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+    .nav{background:#0a1428;}
+  }
+  @media (prefers-reduced-transparency:reduce){
+    .nav{background:#0a1428;-webkit-backdrop-filter:none;backdrop-filter:none;}
+  }
+  /* Anchor jumps must clear the sticky bar or the heading lands underneath it. */
+  :target{scroll-margin-top:64px;}
   .nav .inner{
     max-width:760px;margin:0 auto;padding:0 24px;
     display:flex;align-items:stretch;gap:2px;
@@ -16,18 +34,6 @@
     scrollbar-width:none;
   }
   .nav .inner::-webkit-scrollbar{display:none;}
-  .nav .home{
-    display:flex;align-items:center;padding:0 12px 0 0;
-    text-decoration:none;flex-shrink:0;
-  }
-  /* The instruments-and-drum mark without the wordmark: at nav size the type
-     would be unreadable. 28px is the floor where the horns still read. */
-  .nav .home img{
-    display:block;height:28px;width:auto;
-    opacity:.78;transition:opacity .15s;
-  }
-  .nav .home:hover img,
-  .nav .home:focus-visible img{opacity:1;}
   .nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;}
   .nav a.tab{
     display:block;padding:13px 14px;white-space:nowrap;
@@ -35,7 +41,10 @@
     color:#8f9cba;text-decoration:none;
     border-bottom:2px solid transparent;
   }
-  .nav a.tab:hover{color:#d9bf7e;}
+  /* Gated: on a phone a tap fires :hover and it sticks until the next tap. */
+  @media (hover:hover) and (pointer:fine){
+    .nav a.tab:hover{color:#d9bf7e;}
+  }
   .nav a.tab[aria-current="page"]{color:#d9bf7e;border-bottom-color:#d9bf7e;}
   .nav a:focus-visible{outline:2px solid #d9bf7e;outline-offset:-3px;}
   @media (max-width:420px){
@@ -92,7 +101,7 @@
 </style>
 </head>
 <body>
-<nav class="nav" aria-label="Band program pages"><div class="inner"><a class="home" href="" aria-label="All band pages"><img src="assets/instrumental-arts-mark.png" width="112" height="96" alt="" /></a><ul><li><a class="tab" href="lower-school/">Lower School</a></li><li><a class="tab" href="upper-school/">Upper School</a></li><li><a class="tab" href="ukulele/">Ukulele</a></li><li><a class="tab" href="faq/">FAQ</a></li><li><a class="tab" href="events/">Events</a></li></ul></div></nav>
+<nav class="nav" aria-label="Band program pages"><div class="inner"><ul><li><a class="tab" href="./" aria-current="page">Start Here</a></li><li><a class="tab" href="lower-school/">Lower School</a></li><li><a class="tab" href="upper-school/">Upper School</a></li><li><a class="tab" href="ukulele/">Ukulele</a></li><li><a class="tab" href="faq/">FAQ</a></li><li><a class="tab" href="events/">Events</a></li></ul></div></nav>
 <style>
   :root{
     --navy:#0f1d3a;
@@ -107,6 +116,12 @@
        ease-out used for every press state on the site. */
     --ease-out:cubic-bezier(.23,1,.32,1);
     --press:120ms;
+    /* Elevation scale. Material weight carries hierarchy: a small card sits
+       just off the page, the practice log panel reads as the thickest surface
+       on it. Tinted navy rather than black, so shadows sit in the palette. */
+    --e1:0 1px 2px rgba(15,29,58,.06), 0 4px 12px rgba(15,29,58,.08);
+    --e2:0 2px 4px rgba(15,29,58,.05), 0 10px 24px rgba(15,29,58,.07);
+    --e3:0 4px 10px rgba(15,29,58,.09), 0 20px 48px rgba(15,29,58,.16);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -121,9 +136,14 @@
      Turned off under reduced motion at the bottom of this sheet. */
   html{scroll-behavior:smooth;}
   .hero{
-    background:var(--navy);
+    /* A flat fill reads as a printed block. The gradient gives the navy
+       dimension without changing the color, lighter at the top where light
+       would fall, deepest where it meets the page. */
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(217,191,126,.10) 0%, transparent 62%),
+      linear-gradient(180deg, #16294f 0%, var(--navy) 52%, #0b1730 100%);
     color:#fff;
-    padding:60px 24px 54px;
+    padding:72px 24px 66px;
     text-align:center;
   }
   .hero .logo{
@@ -154,7 +174,14 @@
   }
 
   .wrap{max-width:760px;margin:0 auto;padding:0 24px 90px;}
-  section{padding:44px 0;border-bottom:1px solid var(--line);}
+  /* Dividers fade out at both ends instead of running edge to edge. A hard
+     rule cuts the page into boxes; a fading one separates without walling off,
+     and lets the extra padding do most of the work. */
+  section{padding:56px 0;border-bottom:none;position:relative;}
+  section:not(:last-of-type)::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--line) 14%,var(--line) 86%,transparent);
+  }
   table.wt{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:10px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,sans-serif;}
   table.wt th,table.wt td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;}
   table.wt th{background:var(--navy);color:#fff;font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;}
@@ -167,13 +194,17 @@
   ul.plain li b{color:var(--navy);}
   section:last-of-type{border-bottom:none;}
 
+  /* Hierarchy is built from weight, size and leading together, not size alone.
+     Widening the gap between the eyebrow and the heading is what makes a
+     section announce itself instead of blending into the body copy. */
   h2{
-    font-size:22px;
+    font-size:26px;
     font-weight:800;
     color:var(--navy);
-    margin:0 0 6px;
-    letter-spacing:-.011em;
-    line-height:1.3;
+    margin:0 0 8px;
+    letter-spacing:-.018em;
+    line-height:1.22;
+    text-wrap:balance;
   }
   .eyebrow{
     font-size:11px;
@@ -188,9 +219,10 @@
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;}
   .box{
     background:var(--panel);
-    border:1px solid var(--panel-line);
-    border-radius:10px;
-    padding:20px 22px;
+    border:1px solid rgba(228,221,201,.7);
+    border-radius:14px;
+    padding:22px 24px;
+    box-shadow:var(--e1);
   }
   .box h3{margin:0 0 8px;font-size:15.5px;color:var(--navy);}
   .box p{margin:0;font-size:14px;color:var(--muted);}
@@ -231,14 +263,15 @@
 
   .cta{
     display:inline-block;
-    background:var(--navy);
+    background:linear-gradient(180deg,#16294f 0%,var(--navy) 100%);
     color:#d9bf7e;
     font-weight:700;
-    font-size:14.5px;
-    padding:13px 26px;
-    border-radius:8px;
+    font-size:15px;
+    padding:15px 30px;
+    border-radius:12px;
     text-decoration:none;
     margin-top:6px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14), var(--e2);
   }
   /* Applied automatically when no signing URL is set yet. The button must
      never look live and then do nothing when a parent taps it. */
@@ -246,6 +279,7 @@
     background:#e8e8ee;
     color:#8f95a6;
     cursor:default;
+    box-shadow:none;
   }
   .pending{
     font-size:13px;
@@ -273,11 +307,12 @@
      weekly practice standard is the most common misunderstanding of the whole policy. */
   .whatcounts{
     background:#fff;
-    border:1px solid var(--panel-line);
+    border:1px solid rgba(228,221,201,.7);
     border-left:4px solid var(--navy);
-    border-radius:8px;
-    padding:16px 18px;
+    border-radius:14px;
+    padding:20px 22px;
     margin:0 0 18px;
+    box-shadow:var(--e2);
   }
   .whatcounts p{margin:0;font-size:14.5px;}
   .whatcounts .wc-h{
@@ -299,13 +334,16 @@
      is the link so the tap target is the full block, not four words. */
   .plog{
     display:block;
-    margin:20px 0 0;
-    padding:24px 26px;
-    background:var(--navy);
+    margin:24px 0 0;
+    padding:30px 28px;
+    background:
+      radial-gradient(120% 90% at 50% 0%, rgba(217,191,126,.13) 0%, transparent 60%),
+      linear-gradient(180deg,#16294f 0%,var(--navy) 60%,#0b1730 100%);
     border:2px solid var(--gold);
-    border-radius:12px;
+    border-radius:18px;
     text-align:center;
     text-decoration:none;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.16), var(--e3);
   }
   .plog-eyebrow{
     display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
@@ -322,7 +360,8 @@
   .plog-btn{
     display:inline-block;background:#d9bf7e;color:var(--navy);
     font-size:18px;font-weight:700;line-height:1;
-    padding:16px 32px;border-radius:8px;
+    padding:17px 34px;border-radius:11px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 4px 14px rgba(0,0,0,.28);
   }
   @media (max-width:560px){
     .plog{padding:22px 16px;}
@@ -337,12 +376,12 @@
      under the gold form panel, never a button that competes with it. */
   .paperlog{
     display:block;
-    margin:12px 0 18px;
-    padding:13px 16px;
+    margin:14px 0 18px;
+    padding:15px 18px;
     background:var(--panel);
     border:1px solid var(--line);
     border-left:3px solid var(--line);
-    border-radius:7px;
+    border-radius:12px;
     text-decoration:none;
   }
   .paperlog .pl-h{
@@ -358,9 +397,10 @@
      .lead / .grid2 rules the rest of the page uses. */
   #investment .calc{
     background:var(--panel);
-    border:1px solid var(--panel-line);
-    border-radius:10px;
-    padding:22px;
+    border:1px solid rgba(228,221,201,.7);
+    border-radius:16px;
+    padding:24px;
+    box-shadow:var(--e2);
     display:flex;
     flex-direction:column;
     gap:22px;
@@ -461,11 +501,16 @@
   #investment .totals{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   #investment .tot{
     background:#fff;
-    border:1px solid var(--panel-line);
-    border-radius:8px;
-    padding:15px 17px;
+    border:1px solid rgba(228,221,201,.7);
+    border-radius:13px;
+    padding:17px 19px;
+    box-shadow:var(--e1);
   }
-  #investment .tot.lead-tot{background:var(--navy);border-color:var(--navy);}
+  #investment .tot.lead-tot{
+    background:linear-gradient(180deg,#16294f 0%,var(--navy) 100%);
+    border-color:var(--navy);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.13), var(--e2);
+  }
   #investment .tot .lbl{
     font-size:10.5px;
     letter-spacing:.12em;
@@ -517,10 +562,11 @@
 
   .contact{
     background:var(--panel);
-    border:1px solid var(--panel-line);
-    border-radius:10px;
-    padding:22px;
+    border:1px solid rgba(228,221,201,.7);
+    border-radius:16px;
+    padding:26px;
     text-align:center;
+    box-shadow:var(--e1);
   }
   .contact a{color:var(--gold-deep);font-weight:600;text-decoration:none;}
 
@@ -571,6 +617,42 @@
     html{scroll-behavior:auto;}
     .plog:active,.cta:active,.paperlog:active,#investment .pill:active{transform:none;}
   }
+
+  /* ---- Left section rail ----------------------------------------------
+     Generated by build_site.py for the pages listed in RAIL_PAGES. It lives in
+     the left gutter so the centered column never shifts, which means the phone
+     layout is byte for byte what it was without it. Hidden below 1280px because
+     under that width the gutter is too narrow to clear the text. The links are
+     plain anchors, so with JS off they still jump; only the follow-along
+     highlight needs the script. */
+  .jumprail{
+    position:fixed; left:max(14px, calc(50% - 636px)); top:76px;
+    width:190px; max-height:calc(100vh - 100px); overflow-y:auto;
+    padding:16px 0 20px; z-index:40;
+    background:rgba(15,29,58,.055); border-radius:14px;
+  }
+  .jr-head{
+    margin:0 0 10px; padding:0 16px;
+    font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--gold-deep); font-weight:700;
+  }
+  .jr-list{display:flex; flex-direction:column;}
+  .jr-item{
+    display:block; padding:7px 16px; border-left:3px solid transparent;
+    font-size:12.5px; line-height:1.35; color:var(--muted); text-decoration:none;
+    transition:color 120ms ease, border-color 120ms ease, background-color 120ms ease;
+  }
+  @media (hover:hover) and (pointer:fine){
+    .jr-item:hover{color:var(--navy); background:rgba(15,29,58,.05);}
+  }
+  .jr-item[aria-current="true"]{
+    color:var(--navy); font-weight:700;
+    border-left-color:var(--gold); background:rgba(169,130,47,.10);
+  }
+  .jr-item:focus-visible{outline:2px solid var(--gold-deep); outline-offset:-2px;}
+  section{scroll-margin-top:78px;}
+  @media (max-width:1279px){ .jumprail{display:none;} }
+  @media (prefers-reduced-motion:reduce){ .jr-item{transition:none;} }
 
   @media (max-width:560px){ .grid2{grid-template-columns:1fr;} }
 </style>
